@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="280dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/etAddPtsTeam2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/team2"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/etAddPtsTeam1" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:alpha="0.5"
+        android:background="@color/accent1"
+        app:layout_constraintEnd_toStartOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddPtsTeam1" />
+
+    <TextView
+        android:id="@+id/etAddPtsTeam1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/team1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <EditText
+        android:id="@+id/etTeam1"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:ems="10"
+        android:fontFamily="@font/dosis_bold"
+        android:gravity="center"
+        android:hint="@string/zero"
+        android:inputType="number"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view4" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/addPointsTitle"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:alpha="0.5"
+        android:background="@color/accent2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/etAddPtsTeam2" />
+
+    <EditText
+        android:id="@+id/etTeam2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:fontFamily="@font/dosis_bold"
+        android:gravity="center"
+        android:hint="@string/zero"
+        android:inputType="number"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+    <Button
+        android:id="@+id/btnDelYes"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/accent1Var"
+        android:text="@string/continueBtn"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbKapo"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
+
+    <CheckBox
+        android:id="@+id/cbKapo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/kapo"
+        app:layout_constraintEnd_toStartOf="@+id/cbInside"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/gameWas"
+        app:layout_constraintBottom_toBottomOf="@+id/cbKapo"
+        app:layout_constraintEnd_toStartOf="@+id/cbKapo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cbKapo" />
+
+    <CheckBox
+        android:id="@+id/cbInside"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/insiding"
+        app:layout_constraintBottom_toBottomOf="@+id/cbKapo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/cbKapo"
+        app:layout_constraintTop_toTopOf="@+id/cbKapo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

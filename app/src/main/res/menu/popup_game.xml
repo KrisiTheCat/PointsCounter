@@ -1,0 +1,9 @@
+<!-- res/menu/popup_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itGameDelete"
+        android:title="Delete" />
+    <item
+        android:id="@+id/itGameOpen"
+        android:title="Open" />
+</menu>

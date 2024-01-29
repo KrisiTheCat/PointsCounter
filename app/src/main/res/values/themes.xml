@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.BelotCounter" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/accent1</item>
+        <item name="colorPrimaryVariant">@color/accent1Var</item>
+        <item name="colorPrimaryDark">@color/accent1Var</item>
+        <item name="colorOnPrimary">@color/myDark</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/accent2</item>
+        <item name="colorSecondaryVariant">@color/accent3</item>
+        <item name="colorOnSecondary">@color/myLight</item>
+    </style>
+
+    <style name="Theme.BelotCounter" parent="Base.Theme.BelotCounter" />
+</resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="280dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/etAddPtsTeam1"
+        android:layout_width="233dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/youSureDelGame"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/gameDelTitle"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDelYes"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/accent3"
+        android:text="@string/yes"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/btnDelNo"
+        app:layout_constraintTop_toTopOf="@+id/btnDelNo"
+        app:layout_constraintVertical_bias="1.0"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
+
+    <Button
+        android:id="@+id/btnDelNo"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/material_dynamic_neutral80"
+        android:text="@string/no"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelYes"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddPtsTeam1"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">BelotCounter</string>
+
+    <string name="continueBtn">Продължи</string>
+
+    /*Toasts*/
+    <string name="toast_names_changed">Имената бяха редактирани</string>
+    <string name="toast_game_deleted">Играта бе изтрита</string>
+    <string name="toast_all_zero">Моля добавете точки</string>
+    <string name="toast_invalid_inside">Ако е имало вътрене, един от отборите трябва да има 0 точки</string>
+
+    /*Main*/
+    <string name="last_game">Последна игра:</string>
+    <string name="last_games">По-стари игри:</string>
+    <string name="no_games">Няма предишни игри.</string>
+    <string name="vs">vs</string>
+
+    /*Имена на отбори*/
+    <string name="teamsTitles">Имена на отбори</string>
+    <string name="team1">Отбор 1:</string>
+    <string name="team2">Отбор 2:</string>
+    <string name="team1sug">Ягодки с крачета</string>
+    <string name="team2sug">Анансчета с ръчички</string>
+    <string name="team1hint">Име на отбор 1</string>
+    <string name="team2hint">Име на отбор 2</string>
+
+    /*Въвеждане на точки*/
+    <string name="addPointsTitle">Въвеждане на точки</string>
+    <string name="zero">0</string>
+    <string name="gameWas">Играта беше </string>
+    <string name="insiding">вътре</string>
+    <string name="kapo">капо</string>
+
+    /*Изтриване*/
+    <string name="ptsDelTitle">Изтриване на точки</string>
+    <string name="gameDelTitle">Изтриване на игра</string>
+    <string name="youSureDelPts">Сигурни ли сте, че искате да изтриете този ред?</string>
+    <string name="youSureDelGame">Сигурни ли сте, че искате да изтриете тази игра?</string>
+    <string name="yes">Да</string>
+    <string name="no">Не</string>
+
+    /*В игра*/
+    <string name="addPoints">Добави точки</string>
+    <string name="edit">Редактирай</string>
+    <string name="delete">Изтрий</string>
+</resources>
