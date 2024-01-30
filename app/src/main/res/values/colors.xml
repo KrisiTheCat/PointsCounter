@@ -9,4 +9,9 @@
     <color name="accent2">#F77F00</color>
     <color name="accent3">#D62828</color>
     <color name="myDark">#003049</color>
+
+    /*BELOT*/
+    <color name="belot1">#FFD990</color>
+    <color name="belot2">#FFCE55</color>
+    <color name="belot3">#EEAC2C</color>
 </resources>

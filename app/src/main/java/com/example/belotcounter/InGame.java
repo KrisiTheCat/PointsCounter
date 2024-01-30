@@ -383,11 +383,11 @@ public class InGame extends AppCompatActivity {
         saveGames();
     }
     private void saveGames(){
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        /*SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(Config.games.get(0));
         myEdit.putString("game0", json);
-        myEdit.apply();
+        myEdit.apply();*/
     }
 }

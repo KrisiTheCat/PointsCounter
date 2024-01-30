@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<String> names = new ArrayList<>();
                         String name1 = ((TextView) customLayout.findViewById(R.id.etTeam1)).getText().toString();
                         String name2 = ((TextView) customLayout.findViewById(R.id.etTeam2)).getText().toString();
-                        Config.startGame(name1, name2);
+                        Config.startGame(name1, name2, MainActivity.this);
                         Intent i = new Intent(MainActivity.this, InGame.class);
                         startActivity(i);
                         dialog.dismiss();
@@ -86,18 +86,16 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             /*Last game*/
-            ((TextView) findViewById(R.id.tvLastTeam1)).setText(Config.games.get(0).getTeamNames().get(0));
-            ((TextView) findViewById(R.id.tvLastPts1)).setText(Config.games.get(0).getPoints(0)+"");
-            ((TextView) findViewById(R.id.tvLastTeam2)).setText(Config.games.get(0).getTeamNames().get(1));
-            ((TextView) findViewById(R.id.tvLastPts2)).setText(Config.games.get(0).getPoints(1)+"");
-            findViewById(R.id.clLastGame).setOnClickListener(new View.OnClickListener() {
+            View lastGameLayout = findViewById(R.id.clLastGame);
+            Config.games.get(0).customizeLastGame(MainActivity.this, lastGameLayout);
+            lastGameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(MainActivity.this, InGame.class);
                     startActivity(i);
                 }
             });
-            findViewById(R.id.fabDelLastGame).setOnClickListener(new View.OnClickListener() {
+            lastGameLayout.findViewById(R.id.fabDelGame).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -174,24 +172,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadGames(){
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref3",MODE_PRIVATE);
         int n = sharedPreferences.getInt("gamesCount", 0);
         for(int i = 0; i < n; i++){
             Gson gson = new Gson();
+            String type = sharedPreferences.getString("gameType"+i, "");
+            Game game = null;
             String json = sharedPreferences.getString("game"+i, "");
-            Config.games.add(gson.fromJson(json, Game.class));
+            System.out.println(json);
+            switch(GameType.valueOf(type)){
+                case BELOT:
+                    game = gson.fromJson(json, GameBelot.class);
+                    break;
+
+            }
+            Config.games.add(game);
         }
         Config.gamesLoaded = true;
     }
 
     private void saveGames(){
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref3",MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         Gson gson = new Gson();
         myEdit.putInt("gamesCount", Config.games.size());
         for(int i = 0; i < Config.games.size(); i++){
             String json = gson.toJson(Config.games.get(i));
             myEdit.putString("game"+i, json);
+            myEdit.putString("gameType"+i, Config.games.get(i).gameType.toString());
         }
         myEdit.apply();
     }

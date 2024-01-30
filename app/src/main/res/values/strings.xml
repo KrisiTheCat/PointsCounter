@@ -3,6 +3,9 @@
 
     <string name="continueBtn">Продължи</string>
 
+    /*Games*/
+    <string name="belot">БЕЛОТ</string>
+
     /*Toasts*/
     <string name="toast_names_changed">Имената бяха редактирани</string>
     <string name="toast_game_deleted">Играта бе изтрита</string>

@@ -37,14 +37,14 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/gradient1"
+        android:background="@drawable/gradient_belot"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <TextView
-            android:id="@+id/tvLastTeam1"
+            android:id="@+id/tvTeam1"
             android:layout_width="124dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -54,12 +54,12 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tvLastPts1"
-            app:layout_constraintStart_toStartOf="@+id/tvLastPts1"
-            app:layout_constraintTop_toBottomOf="@+id/tvLastPts1" />
+            app:layout_constraintEnd_toEndOf="@+id/tvPts1"
+            app:layout_constraintStart_toStartOf="@+id/tvPts1"
+            app:layout_constraintTop_toBottomOf="@+id/tvPts1" />
 
         <TextView
-            android:id="@+id/tvLastTeam2"
+            android:id="@+id/tvTeam2"
             android:layout_width="124dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -69,12 +69,12 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tvLastPts2"
-            app:layout_constraintStart_toEndOf="@+id/tvLastPts1"
-            app:layout_constraintTop_toBottomOf="@+id/view9" />
+            app:layout_constraintEnd_toEndOf="@+id/tvPts2"
+            app:layout_constraintStart_toEndOf="@+id/tvPts1"
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
 
         <TextView
-            android:id="@+id/tvLastPts1"
+            android:id="@+id/tvPts1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -83,14 +83,14 @@
             android:text="109"
             android:textColor="@color/white"
             android:textSize="65sp"
-            app:layout_constraintEnd_toStartOf="@+id/tvLastPts2"
+            app:layout_constraintEnd_toStartOf="@+id/tvPts2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvLastPts2"
+            android:id="@+id/tvPts2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dosis_bold"
@@ -101,43 +101,43 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/tvLastPts1"
-            app:layout_constraintTop_toTopOf="@+id/tvLastPts1" />
+            app:layout_constraintStart_toEndOf="@+id/tvPts1"
+            app:layout_constraintTop_toTopOf="@+id/tvPts1" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/line1"
             android:layout_width="100dp"
             android:layout_height="2dp"
-            android:background="@color/accent1"
+            android:background="@color/belot1"
             android:foregroundGravity="center"
-            app:layout_constraintEnd_toEndOf="@+id/tvLastPts1"
-            app:layout_constraintStart_toStartOf="@+id/tvLastPts1"
-            app:layout_constraintTop_toBottomOf="@+id/tvLastPts1" />
+            app:layout_constraintEnd_toEndOf="@+id/tvPts1"
+            app:layout_constraintStart_toStartOf="@+id/tvPts1"
+            app:layout_constraintTop_toBottomOf="@+id/tvPts1" />
 
         <View
-            android:id="@+id/view9"
+            android:id="@+id/line2"
             android:layout_width="100dp"
             android:layout_height="2dp"
-            android:background="@color/accent1"
-            app:layout_constraintEnd_toEndOf="@+id/tvLastPts2"
-            app:layout_constraintStart_toStartOf="@+id/tvLastPts2"
-            app:layout_constraintTop_toBottomOf="@+id/tvLastPts1" />
+            android:background="@color/belot1"
+            app:layout_constraintEnd_toEndOf="@+id/tvPts2"
+            app:layout_constraintStart_toStartOf="@+id/tvPts2"
+            app:layout_constraintTop_toBottomOf="@+id/tvPts1" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvVs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-24dp"
             android:fontFamily="@font/dosis_bold"
             android:text="@string/vs"
-            android:textColor="@color/accent1"
+            android:textColor="@color/belot1"
             android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="@+id/view9"
-            app:layout_constraintEnd_toStartOf="@+id/view9"
-            app:layout_constraintStart_toEndOf="@+id/view" />
+            app:layout_constraintBottom_toBottomOf="@+id/line2"
+            app:layout_constraintEnd_toStartOf="@+id/line2"
+            app:layout_constraintStart_toEndOf="@+id/line1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabDelLastGame"
+            android:id="@+id/fabDelGame"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -150,6 +150,29 @@
             app:maxImageSize="20dp"
             app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
             app:tint="@color/accent2" />
+
+        <View
+            android:id="@+id/viewEdge"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:background="@drawable/edge_belot"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/edgeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-4dp"
+            android:fontFamily="@font/cuprum"
+            android:rotation="-90"
+            android:text="@string/belot"
+            android:textColor="@color/belot3"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -182,9 +205,9 @@
             android:id="@+id/llPrevGames"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:divider="@drawable/empty_tall_divider"
             android:orientation="vertical"
-            android:showDividers="middle"
-            android:divider="@drawable/empty_tall_divider">
+            android:showDividers="middle">
 
 
         </LinearLayout>
