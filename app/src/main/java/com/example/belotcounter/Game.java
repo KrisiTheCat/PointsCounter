@@ -3,7 +3,6 @@ package com.example.belotcounter;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -63,8 +62,9 @@ public abstract class Game {
 
     abstract void checkForWinner();
 
-    public void customizeLastGame(Context context, View view){
-        view.setBackground(ContextCompat.getDrawable(context, gameType.gradient));
+    public void customizeGameBtn(Context context, View view, boolean gradient){
+        if(gradient) view.setBackground(ContextCompat.getDrawable(context, gameType.gradient));
+        else view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
         view.findViewById(R.id.viewEdge).setBackground(ContextCompat.getDrawable(context, gameType.edge));
         view.findViewById(R.id.line1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
         view.findViewById(R.id.line2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
@@ -78,6 +78,27 @@ public abstract class Game {
         ((TextView) view.findViewById(R.id.tvPts1)).setText(getPoints(0)+"");
         ((TextView) view.findViewById(R.id.tvTeam2)).setText(teamNames.get(1));
         ((TextView) view.findViewById(R.id.tvPts2)).setText(getPoints(1)+"");
+    }
 
+    public void customizeInGameLandscape(Context context, View view){
+        ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(Color.WHITE);
+        ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(Color.WHITE);
+        view.findViewById(R.id.viewTeam1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
+        ((TextView) view.findViewById(R.id.tvTeam2)).setTextColor(Color.WHITE);
+        ((TextView) view.findViewById(R.id.tvFinal2)).setTextColor(Color.WHITE);
+        view.findViewById(R.id.viewTeam2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
+    }
+    public void customizeInGamePortrait(Context context, View view){
+        ((TextView) view.findViewById(R.id.tvGameName)).setText(context.getResources().getString(gameType.gameName));
+        view.findViewById(R.id.tvGameName).setBackground(ContextCompat.getDrawable(context, gameType.upper));
+        ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+        ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+        ((TextView) view.findViewById(R.id.tvTeam2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
+        ((TextView) view.findViewById(R.id.tvFinal2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
+        view.findViewById(R.id.addPointsBtn).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
+    }
+    public void customizeEditEntry(Context context, View view){
+        view.findViewById(R.id.viewBehind1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
+        view.findViewById(R.id.viewBehind2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
     }
 }

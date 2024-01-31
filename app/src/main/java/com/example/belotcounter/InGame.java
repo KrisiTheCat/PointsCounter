@@ -57,6 +57,12 @@ public class InGame extends AppCompatActivity {
     }
 
     void init() {
+        if(InGame.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Config.currentGame().customizeInGameLandscape(InGame.this, findViewById(R.id.inGameLayout));
+        }
+        else{
+            Config.currentGame().customizeInGamePortrait(InGame.this, findViewById(R.id.inGameLayout));
+        }
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenHeight = displayMetrics.heightPixels;
@@ -95,6 +101,7 @@ public class InGame extends AppCompatActivity {
         editDialog = builder.create();
         etPointsPopup.add((EditText) editLayout.findViewById(R.id.etTeam1));
         etPointsPopup.add((EditText) editLayout.findViewById(R.id.etTeam2));
+        Config.currentGame().customizeEditEntry(InGame.this, editLayout);
 
         builder = new AlertDialog.Builder(InGame.this);
         deleteLayout = getLayoutInflater().inflate(R.layout.popup_delete_entry, null);
@@ -107,6 +114,7 @@ public class InGame extends AppCompatActivity {
                 namesDialog();
             }
         });
+
     }
 
     void namesDialog(){
@@ -133,6 +141,7 @@ public class InGame extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        Config.currentGame().customizeInGamePortrait(InGame.this, findViewById(R.id.inGameLayout));
     }
 
     @SuppressLint("SetTextI18n")
@@ -206,7 +215,6 @@ public class InGame extends AppCompatActivity {
 
     void refreshNames() {
         for(int i = 0; i < Config.TEAMS_COUNT; i++) {
-            System.out.println(Config.currentGame().getTeamNames().get(i));
             tvNames.get(i).setText(Config.currentGame().getTeamNames().get(i));
         }
     }
@@ -214,8 +222,6 @@ public class InGame extends AppCompatActivity {
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     void refreshPoints(){
         teamsPoints = new int[Config.TEAMS_COUNT];
-        System.out.println(Config.currentGame().getTurns().size());
-        System.out.println(turns.size());
         tvLayout.removeAllViews();
         View editRibbon = findViewById(R.id.cLEditEntry);
         View deleteRibbon = findViewById(R.id.cLDeleteEntry);
@@ -310,7 +316,6 @@ public class InGame extends AppCompatActivity {
                             startView[1] -= 115;
                             break;
                         case MotionEvent.ACTION_MOVE:
-                            System.out.println();
                             if(event.getRawX() > startMotion[0]){
                                 editRibbon.animate()
                                         .x(event.getRawX() + dXe)
@@ -361,19 +366,6 @@ public class InGame extends AppCompatActivity {
         }
         for(int i = 0; i < Config.TEAMS_COUNT; i++){
             tvFinal.get(i).setText(teamsPoints[i]+"");
-        }
-    }
-
-    @Override
-    public void onConfigurationChanged(@NotNull Configuration
-                                                         newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        // Checks the orientation of the screen
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            refreshPoints();
         }
     }
 

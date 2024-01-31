@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inGameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InGame">
@@ -86,7 +87,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tvGameName"
         android:layout_width="110dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -110,7 +111,7 @@
         app:layout_constraintBottom_toTopOf="@+id/addPointsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGameName" />
 
     <Button
         android:id="@+id/addPointsBtn"
@@ -130,19 +131,19 @@
         app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
 
     <View
-        android:id="@+id/view7"
+        android:id="@+id/viewTeam1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/accent1"
         android:translationZ="-1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/view8"
+        app:layout_constraintEnd_toStartOf="@+id/viewTeam2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/view8"
+        android:id="@+id/viewTeam2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/accent2"
@@ -150,7 +151,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/view7"
+        app:layout_constraintStart_toEndOf="@+id/viewTeam1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -163,7 +164,7 @@
         android:text="@string/team2sug"
         android:textColor="@color/myLight"
         android:textSize="34sp"
-        android:translationZ="10dp"
+        android:translationZ="3dp"
         app:layout_constraintBottom_toTopOf="@+id/tvFinal2"
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -207,6 +208,7 @@
         android:text="0"
         android:textColor="@color/white"
         android:textSize="110sp"
+        android:translationZ="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.501"
@@ -224,7 +226,7 @@
         android:text="@string/team1sug"
         android:textColor="@color/myLight"
         android:textSize="34sp"
-        android:translationZ="10dp"
+        android:translationZ="3dp"
         app:layout_constraintBottom_toTopOf="@+id/tvFinal1"
         app:layout_constraintEnd_toStartOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.497"
@@ -241,6 +243,7 @@
         android:text="0"
         android:textColor="@color/white"
         android:textSize="110sp"
+        android:translationZ="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintHorizontal_bias="0.5"

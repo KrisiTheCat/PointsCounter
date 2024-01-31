@@ -164,7 +164,7 @@
             android:id="@+id/edgeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-4dp"
+            android:layout_marginStart="-5dp"
             android:fontFamily="@font/cuprum"
             android:rotation="-90"
             android:text="@string/belot"

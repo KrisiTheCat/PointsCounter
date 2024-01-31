@@ -10,6 +10,7 @@ public enum GameType {
             R.color.belot3,
             R.drawable.gradient_belot,
             R.drawable.edge_belot,
+            R.drawable.upper_belot,
             R.string.belot
     );
 
@@ -18,14 +19,16 @@ public enum GameType {
     final int colorDark;
     final int gradient;
     final int edge;
+    final int upper;
     final int gameName;
 
-    GameType(int colorLight, int colorAccent, int colorDark, int gradient, int edge, int gameName) {
+    GameType(int colorLight, int colorAccent, int colorDark, int gradient, int edge, int upper, int gameName) {
         this.colorLight = colorLight;
         this.colorAccent = colorAccent;
         this.colorDark = colorDark;
         this.gradient = gradient;
         this.edge = edge;
+        this.upper = upper;
         this.gameName = gameName;
     }
 }

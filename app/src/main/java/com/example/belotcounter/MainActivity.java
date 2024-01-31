@@ -3,27 +3,17 @@ package com.example.belotcounter;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.ScrollView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             /*Last game*/
             View lastGameLayout = findViewById(R.id.clLastGame);
-            Config.games.get(0).customizeLastGame(MainActivity.this, lastGameLayout);
+            Config.games.get(0).customizeGameBtn(MainActivity.this, lastGameLayout, true);
             lastGameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -120,11 +110,12 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 for(int i = 1; i < Config.games.size(); i++) {
-                    View view = LayoutInflater.from(this).inflate(R.layout.old_game_group, null);
+                    View view = LayoutInflater.from(this).inflate(R.layout.old_game_group2, null);
                     ((TextView) view.findViewById(R.id.tvTeam1)).setText(Config.games.get(i).getTeamNames().get(0));
                     ((TextView) view.findViewById(R.id.tvPts1)).setText(Config.games.get(i).getPoints(0) + "");
                     ((TextView) view.findViewById(R.id.tvTeam2)).setText(Config.games.get(i).getTeamNames().get(1));
                     ((TextView) view.findViewById(R.id.tvPts2)).setText(Config.games.get(i).getPoints(1) + "");
+                    Config.games.get(i).customizeGameBtn(MainActivity.this, view, false);
                     int finalI = i;
                     view.findViewById(R.id.fabDelGame).setOnClickListener(new View.OnClickListener() {
                         @Override
