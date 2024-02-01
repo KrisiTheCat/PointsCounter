@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public abstract class Game {
     public GameType gameType;
     private ArrayList<String> teamNames;
-    private ArrayList<Turn> turns;
+    protected ArrayList<Turn> turns;
+    public Winner winner;
 
 
     Game(){
@@ -23,12 +24,14 @@ public abstract class Game {
         turns = new ArrayList<>();
         teamNames.add("");
         teamNames.add("");
+        winner = Winner.NONE;
     }
     Game(String n1, String n2){
         teamNames = new ArrayList<>();
         turns = new ArrayList<>();
         teamNames.add(n1);
         teamNames.add(n2);
+        winner = Winner.NONE;
     }
 
     public ArrayList<String> getTeamNames() {
@@ -100,5 +103,26 @@ public abstract class Game {
     public void customizeEditEntry(Context context, View view){
         view.findViewById(R.id.viewBehind1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
         view.findViewById(R.id.viewBehind2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
+    }
+    public void customizeWinScreen(Context context, View view){
+        view.findViewById(R.id.btnToMenu).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
+        switch(winner){
+            case TEAM_1:
+                ((TextView) view.findViewById(R.id.tvWinner)).setText(teamNames.get(0));
+                ((TextView) view.findViewById(R.id.tvWinner)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+                break;
+            case TEAM_2:
+                ((TextView) view.findViewById(R.id.tvWinner)).setText(teamNames.get(1));
+                ((TextView) view.findViewById(R.id.tvWinner)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
+                break;
+            case TEAM_3:
+                ((TextView) view.findViewById(R.id.tvWinner)).setText(teamNames.get(2));
+                ((TextView) view.findViewById(R.id.tvWinner)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+                break;
+            default:
+                /**TODO
+                 * - tie
+                 */
+        }
     }
 }

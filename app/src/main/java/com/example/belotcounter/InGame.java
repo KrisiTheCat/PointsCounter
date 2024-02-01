@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,6 +20,8 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -54,6 +58,9 @@ public class InGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game);
         init();
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this, Config.currentGame().gameType.colorLight));
     }
 
     void init() {
@@ -108,12 +115,20 @@ public class InGame extends AppCompatActivity {
         builder.setView(deleteLayout);
         deleteDialog = builder.create();
 
-        findViewById(R.id.tvTeam1).setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener list = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 namesDialog();
             }
-        });
+        };
+        findViewById(R.id.tvTeam1).setOnClickListener(list);
+        findViewById(R.id.tvTeam2).setOnClickListener(list);
+
+        System.out.println("120, Winner:" + Config.currentGame().winner );
+        if(Config.currentGame().winner != Winner.NONE){
+            findViewById(R.id.addPointsBtn).setVisibility(View.INVISIBLE);
+            findViewById(R.id.tvFinished).setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -188,6 +203,19 @@ public class InGame extends AppCompatActivity {
                         Config.currentGame().setTurn(new Turn(newVal,kapo,inside), id);
                     refreshPoints();
                     editDialog.hide();
+                    Winner oldWin = Config.currentGame().winner;
+                    Config.currentGame().checkForWinner();
+                    System.out.println(Config.currentGame().winner);
+                    if(Config.currentGame().winner != Winner.NONE){
+                        Intent i = new Intent(InGame.this, WinScreen.class);
+                        startActivity(i);
+                        findViewById(R.id.addPointsBtn).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.tvFinished).setVisibility(View.VISIBLE);
+                    }
+                    if(oldWin != Winner.NONE && Config.currentGame().winner == Winner.NONE){
+                        findViewById(R.id.addPointsBtn).setVisibility(View.VISIBLE);
+                        findViewById(R.id.tvFinished).setVisibility(View.GONE);
+                    }
                 }
             }
         });

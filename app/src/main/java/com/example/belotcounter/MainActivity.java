@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
             }
+            if(game.winner==null) game.winner = Winner.NONE;
             Config.games.add(game);
         }
         Config.gamesLoaded = true;
