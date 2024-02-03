@@ -11,7 +11,17 @@
     <color name="myDark">#003049</color>
 
     /*BELOT*/
-    <color name="belot1">#FFD990</color>
-    <color name="belot2">#FFCA47</color>
-    <color name="belot3">#F3AC24</color>
+    <color name="belot1">#FBD07D</color>
+    <color name="belot2">#F8B536</color>
+    <color name="belot3">#EFA313</color>
+
+    /*SANTACE*/
+    <color name="santace1">#CEEDAB</color>
+    <color name="santace2">#8CC051</color>
+    <color name="santace3">#649E22</color>
+
+    /*HILQDA*/
+    <color name="hilqda1">#B7D3F7</color>
+    <color name="hilqda2">#5D9CEC</color>
+    <color name="hilqda3">#3575CA</color>
 </resources>

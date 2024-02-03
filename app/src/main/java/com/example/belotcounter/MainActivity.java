@@ -9,8 +9,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -23,11 +25,13 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    View swipeView;
+    boolean fabOpen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fabOpen = false;
 
         if(!Config.gamesLoaded) loadGames();
         initGamesTabs();
@@ -36,28 +40,63 @@ public class MainActivity extends AppCompatActivity {
         startGameFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Handler handler = new Handler();
+                Handler handler2 = new Handler();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                if(fabOpen) {
+                    startGameFab.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.rotate_from_45));
+                    findViewById(R.id.startBelotFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                    findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                            findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
 
-                final View customLayout = getLayoutInflater().inflate(R.layout.popup_teams_names, null);
-                builder.setView(customLayout);
+                            handler2.postDelayed(new Runnable() {
+                                public void run() {
+                                    findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                    findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                }
+                            }, 200);
+                        }
+                    }, 200);
+                }
+                else {
+                    startGameFab.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.rotate_to_45));
+                    findViewById(R.id.startBelotFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                    findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                            findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                            handler2.postDelayed(new Runnable() {
+                                public void run() {
+                                    findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                    findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                }
+                            }, 200);
+                        }
+                    }, 200);
+                }
+                fabOpen = !fabOpen;
+            }
+        });
 
-                Button continueBtn = (Button) customLayout.findViewById(R.id.btnDelYes);
-                continueBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ArrayList<String> names = new ArrayList<>();
-                        String name1 = ((TextView) customLayout.findViewById(R.id.etTeam1)).getText().toString();
-                        String name2 = ((TextView) customLayout.findViewById(R.id.etTeam2)).getText().toString();
-                        Config.startGame(name1, name2, MainActivity.this);
-                        Intent i = new Intent(MainActivity.this, InGame.class);
-                        startActivity(i);
-                        dialog.dismiss();
-                    }
-                });
+        final Game[] game = {null};
+        Runnable openGame = new Runnable() {
+            @Override
+            public void run(){
+                Config.addGame(game[0]);
+                Intent i = new Intent(MainActivity.this, InGame.class);
+                startActivity(i);
+            }
+        };
+        findViewById(R.id.startBelotFab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game[0] = new GameBelot();
+                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
             }
         });
 

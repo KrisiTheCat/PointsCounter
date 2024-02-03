@@ -9,10 +9,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -29,10 +26,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -106,8 +99,6 @@ public class InGame extends AppCompatActivity {
         editLayout = getLayoutInflater().inflate(R.layout.popup_edit_entry, null);
         builder.setView(editLayout);
         editDialog = builder.create();
-        etPointsPopup.add((EditText) editLayout.findViewById(R.id.etTeam1));
-        etPointsPopup.add((EditText) editLayout.findViewById(R.id.etTeam2));
         Config.currentGame().customizeEditEntry(InGame.this, editLayout);
 
         builder = new AlertDialog.Builder(InGame.this);
@@ -135,7 +126,7 @@ public class InGame extends AppCompatActivity {
     void namesDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        final View customLayout = getLayoutInflater().inflate(R.layout.popup_teams_names, null);
+        final View customLayout = getLayoutInflater().inflate(R.layout.popup_teams_names_two, null);
         builder.setView(customLayout);
         ((EditText) customLayout.findViewById(R.id.etTeam1)).setText(Config.currentGame().getTeamNames().get(0));
         ((EditText) customLayout.findViewById(R.id.etTeam2)).setText(Config.currentGame().getTeamNames().get(1));
@@ -161,46 +152,15 @@ public class InGame extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     void editEntry(int id){
+        Config.currentGame().initEntryPopup(editLayout, id);
         editDialog.show();
-
-        for(int i = 0; i < etPointsPopup.size(); i++){
-            if(id!=-1 && Config.currentGame().getTurns().get(id).getPoints(i)!=0)
-                etPointsPopup.get(i).setText(Config.currentGame().getTurns().get(id).getPoints(i)+"");
-            else
-                etPointsPopup.get(i).setText("");
-        }
-        ((TextView)editLayout.findViewById(R.id.etAddPtsTeam1)).setText(Config.currentGame().getTeamNames().get(0));
-        ((TextView)editLayout.findViewById(R.id.etAddPtsTeam2)).setText(Config.currentGame().getTeamNames().get(1));
-        if(id!=-1) {
-            ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(Config.currentGame().getTurns().get(id).isKapo());
-            ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(Config.currentGame().getTurns().get(id).isInside());
-        }
         ((Button) editLayout.findViewById(R.id.btnDelYes)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Integer> newVal = new ArrayList<>();
-                boolean allZero = true;
-                for(int i = 0; i < etPointsPopup.size(); i++){
-                    String temp = etPointsPopup.get(i).getText().toString();
-                    if(temp.length() == 0) newVal.add(0);
-                    else{
-                        newVal.add(Integer.parseInt(temp));
-                        if(Integer.parseInt(temp) != 0) allZero = false;
-                    }
-                }
-                boolean kapo = ((CheckBox) editLayout.findViewById(R.id.cbKapo)).isChecked();
-                boolean inside = ((CheckBox) editLayout.findViewById(R.id.cbInside)).isChecked();
-                if(allZero){
-                    Toast.makeText(InGame.this, getResources().getText(R.string.toast_all_zero), Toast.LENGTH_SHORT).show();
-                }
-                else if(inside && newVal.get(0)!=0 && newVal.get(1)!=0) {
-                    Toast.makeText(InGame.this, getResources().getText(R.string.toast_invalid_inside), Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    if(id == -1)
-                        Config.currentGame().addTurn(new Turn(newVal,kapo,inside));
-                    else
-                        Config.currentGame().setTurn(new Turn(newVal,kapo,inside), id);
+                Turn turn = Config.currentGame().extractEntry(editLayout, InGame.this);
+                if(turn!=null){
+                    if(id==-1) Config.currentGame().addTurn(turn);
+                    else Config.currentGame().setTurn(turn, id);
                     refreshPoints();
                     editDialog.hide();
                     Winner oldWin = Config.currentGame().winner;

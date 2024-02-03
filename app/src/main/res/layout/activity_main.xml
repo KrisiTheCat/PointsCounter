@@ -38,6 +38,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/gradient_belot"
+        android:foregroundTint="#222222"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,11 +46,12 @@
 
         <TextView
             android:id="@+id/tvTeam1"
-            android:layout_width="124dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/cuprum"
             android:gravity="center"
+            android:maxWidth="100dp"
             android:text="Отбор 1"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -60,17 +62,18 @@
 
         <TextView
             android:id="@+id/tvTeam2"
-            android:layout_width="124dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/cuprum"
             android:gravity="center"
+            android:maxWidth="100dp"
             android:text="Отбор 2"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvPts2"
-            app:layout_constraintStart_toEndOf="@+id/tvPts1"
+            app:layout_constraintStart_toStartOf="@+id/tvPts2"
             app:layout_constraintTop_toBottomOf="@+id/line2" />
 
         <TextView
@@ -173,6 +176,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -214,6 +218,71 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/startHilqdaFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/continueBtn"
+        android:foregroundGravity="center"
+        android:src="@drawable/hilqda"
+        android:visibility="invisible"
+        app:backgroundTint="@color/myDark"
+        app:elevation="2dp"
+        app:fabCustomSize="40dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/startSantaceFab"
+        app:layout_constraintEnd_toEndOf="@+id/startSantaceFab"
+        app:layout_constraintStart_toStartOf="@+id/startSantaceFab"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:tint="@color/hilqda1"
+        app:useCompatPadding="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/startSantaceFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/continueBtn"
+        android:foregroundGravity="center"
+        android:src="@drawable/santace"
+        android:visibility="invisible"
+        app:backgroundTint="@color/myDark"
+        app:elevation="2dp"
+        app:fabCustomSize="40dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/startBelotFab"
+        app:layout_constraintEnd_toEndOf="@+id/startBelotFab"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/startBelotFab"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:tint="@color/santace1"
+        app:useCompatPadding="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/startBelotFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/continueBtn"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/belot2"
+        android:src="@drawable/belot"
+        android:visibility="invisible"
+        app:backgroundTint="@color/myDark"
+        app:elevation="2dp"
+        app:fabCustomSize="40dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/startGameFab"
+        app:layout_constraintEnd_toEndOf="@+id/startGameFab"
+        app:layout_constraintStart_toStartOf="@+id/startGameFab"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:tint="@color/belot2"
+        app:useCompatPadding="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startGameFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -222,7 +291,7 @@
         android:contentDescription="@string/continueBtn"
         android:foregroundTint="@color/white"
         android:src="@drawable/plus"
-        app:backgroundTint="@color/accent1Var"
+        app:backgroundTint="@color/myDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="40dp"
@@ -250,5 +319,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/tvBelotBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/edge_belot"
+        android:fontFamily="@font/cuprum"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="8dp"
+        android:text="@string/belotBtn"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/startBelotFab"
+        app:layout_constraintEnd_toEndOf="@+id/startBelotFab"
+        app:layout_constraintTop_toTopOf="@+id/startBelotFab" />
+
+    <TextView
+        android:id="@+id/tvSantaceBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/edge_santace"
+        android:fontFamily="@font/cuprum"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="8dp"
+        android:text="@string/santaceBtn"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/startSantaceFab"
+        app:layout_constraintEnd_toEndOf="@+id/startSantaceFab"
+        app:layout_constraintTop_toTopOf="@+id/startSantaceFab"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <TextView
+        android:id="@+id/tvHilqdaBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/edge_hilqda"
+        android:fontFamily="@font/cuprum"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="8dp"
+        android:text="@string/hilqdaBtn"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/startHilqdaFab"
+        app:layout_constraintEnd_toEndOf="@+id/startHilqdaFab"
+        app:layout_constraintTop_toTopOf="@+id/startHilqdaFab"
+        app:layout_constraintVertical_bias="0.482" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

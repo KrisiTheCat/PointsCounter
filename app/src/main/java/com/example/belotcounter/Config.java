@@ -10,8 +10,11 @@ public class Config {
     public static final int TEAMS_COUNT = 2;
     public static boolean gamesLoaded = false;
 
+    public static void addGame(Game game){
+        games.add(0, game);
+    }
     public static void startGame(String n1, String n2, Context context){
-        games.add(0, new GameBelot(n1,n2, context));
+        //games.add(0, new GameBelot(n1,n2, context));
     }
     public static Game currentGame(){
         return games.get(0);

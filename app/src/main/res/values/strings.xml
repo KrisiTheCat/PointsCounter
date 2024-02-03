@@ -5,6 +5,15 @@
 
     /*Games*/
     <string name="belot">БЕЛОТ</string>
+    <string name="belotBtn">Белот</string>
+    <string name="santace">САНТАСЕ</string>
+    <string name="santaceBtn">Сантасе</string>
+    <string name="hilqda">ХИЛЯДА</string>
+    <string name="hilqdaBtn">Хиляда</string>
+
+    /*Party name*/
+    <string name="team">Отбор</string>
+    <string name="player">Играч</string>
 
     /*Toasts*/
     <string name="toast_names_changed">Имената бяха редактирани</string>

@@ -3,6 +3,7 @@ package com.example.belotcounter;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public abstract class Game {
     public GameType gameType;
-    private ArrayList<String> teamNames;
+    protected ArrayList<String> teamNames;
     protected ArrayList<Turn> turns;
     public Winner winner;
 
@@ -33,6 +34,11 @@ public abstract class Game {
         teamNames.add(n2);
         winner = Winner.NONE;
     }
+
+    abstract void initNames(Context context, LayoutInflater layoutInflater, Runnable runnable);
+    abstract void checkForWinner();
+    abstract void initEntryPopup(View editLayout, int id);
+    abstract Turn extractEntry(View editLayout, Context context);
 
     public ArrayList<String> getTeamNames() {
         return teamNames;
@@ -63,7 +69,6 @@ public abstract class Game {
         return sum;
     }
 
-    abstract void checkForWinner();
 
     public void customizeGameBtn(Context context, View view, boolean gradient){
         if(gradient) view.setBackground(ContextCompat.getDrawable(context, gameType.gradient));
