@@ -16,12 +16,17 @@
     <color name="belot3">#EFA313</color>
 
     /*SANTACE*/
-    <color name="santace1">#CEEDAB</color>
-    <color name="santace2">#8CC051</color>
-    <color name="santace3">#649E22</color>
+    <color name="santace1">#D7C7FF</color>
+    <color name="santace2">#AC92ED</color>
+    <color name="santace3">#967BDC</color>
 
     /*HILQDA*/
     <color name="hilqda1">#B7D3F7</color>
     <color name="hilqda2">#5D9CEC</color>
     <color name="hilqda3">#3575CA</color>
+
+    /*BLATO*/
+    <color name="blato1">#CEEDAB</color>
+    <color name="blato2">#8CC051</color>
+    <color name="blato3">#649E22</color>
 </resources>

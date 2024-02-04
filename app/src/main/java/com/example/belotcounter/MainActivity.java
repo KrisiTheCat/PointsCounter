@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Config.openGame(finalI);
-                            Intent i = new Intent(MainActivity.this, InGame.class);
+                            Intent i = new Intent(MainActivity.this, Playing.class);
                             startActivity(i);
                         }
                     });

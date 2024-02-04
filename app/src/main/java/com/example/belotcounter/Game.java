@@ -97,8 +97,6 @@ public abstract class Game {
         view.findViewById(R.id.viewTeam2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
     }
     public void customizeInGamePortrait(Context context, View view){
-        ((TextView) view.findViewById(R.id.tvGameName)).setText(context.getResources().getString(gameType.gameName));
-        view.findViewById(R.id.tvGameName).setBackground(ContextCompat.getDrawable(context, gameType.upper));
         ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvTeam2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));

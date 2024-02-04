@@ -99,4 +99,11 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <string name="title_activity_playing">Игра</string>
+    <string name="tab_text_1">Резултати</string>
+    <string name="tab_text_2">Графика</string>
+    <string name="tab_text_3">Статистика</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
