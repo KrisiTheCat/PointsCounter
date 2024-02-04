@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run(){
                 Config.addGame(game[0]);
-                Intent i = new Intent(MainActivity.this, InGame.class);
+                Intent i = new Intent(MainActivity.this, Playing.class);
                 startActivity(i);
             }
         };
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             lastGameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(MainActivity.this, InGame.class);
+                    Intent i = new Intent(MainActivity.this, Playing.class);
                     startActivity(i);
                 }
             });

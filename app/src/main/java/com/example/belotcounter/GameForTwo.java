@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -41,5 +42,14 @@ public abstract class GameForTwo extends Game{
                 runnable.run();
             }
         });
+    }
+
+    @Override
+    ArrayList<LinearLayout> getGraphLayouts(Context context, View view) {
+        view.findViewById(R.id.llGraphTeam3).setVisibility(View.GONE);
+        ArrayList<LinearLayout> ans = new ArrayList<>();
+        ans.add((LinearLayout) view.findViewById(R.id.llGraphTeam1));
+        ans.add((LinearLayout) view.findViewById(R.id.llGraphTeam2));
+        return ans;
     }
 }

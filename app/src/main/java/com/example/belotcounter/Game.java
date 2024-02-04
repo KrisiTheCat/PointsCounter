@@ -5,11 +5,15 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 
@@ -39,6 +43,7 @@ public abstract class Game {
     abstract void checkForWinner();
     abstract void initEntryPopup(View editLayout, int id);
     abstract Turn extractEntry(View editLayout, Context context);
+    abstract ArrayList<LinearLayout> getGraphLayouts(Context context, View view);
 
     public ArrayList<String> getTeamNames() {
         return teamNames;
@@ -126,6 +131,45 @@ public abstract class Game {
                 /**TODO
                  * - tie
                  */
+        }
+    }
+    public void customizeGraph(Context context, View view){
+        int c = 0;
+        ArrayList<LinearLayout> llTeams = getGraphLayouts(context, view);
+        for(int i = 0; i < gameType.plCount; i++){
+            ((TextView) llTeams.get(i).findViewWithTag("tvGraphTeam")).setText(teamNames.get(i));
+            if(i%2==0)
+                c = ContextCompat.getColor(context, gameType.colorAccent);
+            else
+                c = ContextCompat.getColor(context, gameType.colorDark);
+            llTeams.get(i).findViewWithTag("vGraphTeam").setBackgroundTintList(ColorStateList.valueOf(c));
+        }
+        initGraph(context, view.findViewById(R.id.idGraphView));
+    }
+
+    void initGraph(Context context, GraphView graphView) {
+        graphView.getGridLabelRenderer().setHumanRounding(false);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
+                new DataPoint(0, 151),
+                new DataPoint(turns.size(), 151)/*TODO: remove 151*/
+        });
+        series.setColor(ContextCompat.getColor(context, R.color.myDark));
+        graphView.addSeries(series);
+        for(int i = 0 ; i < gameType.plCount; i++) {
+            DataPoint[] values = new DataPoint[turns.size()+1];
+            int s = 0;
+            values[0] = new DataPoint(0,0);
+            for (int j=0; j<turns.size(); j++) {
+                s+=turns.get(j).getPoints(i);
+                System.out.println(s);
+                values[j+1] = new DataPoint(j, s);
+            }
+            series = new LineGraphSeries<DataPoint>(values);
+            if(i%2==0)
+                series.setColor(ContextCompat.getColor(context, gameType.colorAccent));
+            else
+                series.setColor(ContextCompat.getColor(context, gameType.colorDark));
+            graphView.addSeries(series);
         }
     }
 }
