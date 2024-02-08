@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -53,6 +57,34 @@ public class GameBelot extends GameForTwo{
         }
         else{
             return new Turn(newVal,kapo,inside);
+        }
+    }
+
+    @Override
+    void addToTurnCL(Context context, ConstraintLayout constraintLayout, int id) {
+        if(turns.get(id).isInside()){
+            ImageView imageView = new ImageView(context);
+            imageView.setId(View.generateViewId());
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                    100,
+                    100
+            ));
+            imageView.setAdjustViewBounds(true);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            if(turns.get(id).getPoints(1) == 0)
+                imageView.setImageResource(R.drawable.inside_arrow_left);
+            else
+                imageView.setImageResource(R.drawable.inside_arrow_right);
+
+            constraintLayout.addView(imageView);
+
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone(constraintLayout);
+            constraintSet.connect(imageView.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
+            constraintSet.connect(imageView.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END);
+            constraintSet.connect(imageView.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
+            constraintSet.setVerticalBias(imageView.getId(), 0.5f);
+            constraintSet.applyTo(constraintLayout);
         }
     }
 

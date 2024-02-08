@@ -41,4 +41,11 @@ public class Turn implements Cloneable{
     public int getPoints(int team){
         return points.get(team);
     }
+    public int getWinner(){
+        int id = 0;
+        for(int j = 1; j < points.size(); j++){
+            if(points.get(j)>points.get(id)) id = j;
+        }
+        return id;
+    }
 }

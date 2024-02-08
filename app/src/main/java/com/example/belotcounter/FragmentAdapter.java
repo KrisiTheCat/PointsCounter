@@ -22,8 +22,8 @@ public class FragmentAdapter extends FragmentPagerAdapter {
                 FragmentGraph fragmentGraph = new FragmentGraph();
                 return fragmentGraph;
             case 2:
-                FragmentResults fragmentResults3 = new FragmentResults();
-                return fragmentResults3;
+                FragmentAwards fragmentAwards = new FragmentAwards();
+                return fragmentAwards;
             default:
                 return null;
         }

@@ -133,7 +133,6 @@ public class FragmentResults extends Fragment {
         ROOT.findViewById(R.id.tvTeam1).setOnClickListener(list);
         ROOT.findViewById(R.id.tvTeam2).setOnClickListener(list);
 
-        System.out.println("120, Winner:" + Config.currentGame().winner );
         if(Config.currentGame().winner != Winner.NONE){
             ROOT.findViewById(R.id.addPointsBtn).setVisibility(View.INVISIBLE);
             ROOT.findViewById(R.id.tvFinished).setVisibility(View.VISIBLE);
@@ -183,7 +182,6 @@ public class FragmentResults extends Fragment {
                     editDialog.hide();
                     Winner oldWin = Config.currentGame().winner;
                     Config.currentGame().checkForWinner();
-                    System.out.println(Config.currentGame().winner);
                     if(Config.currentGame().winner != Winner.NONE){
                         Intent i = new Intent(getActivity(), WinScreen.class);
                         startActivity(i);
@@ -232,76 +230,7 @@ public class FragmentResults extends Fragment {
         View editRibbon = ROOT.findViewById(R.id.cLEditEntry);
         View deleteRibbon = ROOT.findViewById(R.id.cLDeleteEntry);
         for(int j = 0; j < turns.size(); j++) {
-            ConstraintLayout constraintLayout = new ConstraintLayout(getActivity());
-            TextView textView1 = new TextView(getActivity());
-            TextView textView2 = new TextView(getActivity());
-
-            constraintLayout.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    100
-            ));
-            ConstraintSet constraintSet = new ConstraintSet();
-
-            textView1.setId(View.generateViewId());
-            textView1.setLayoutParams(new ConstraintLayout.LayoutParams(0,100));
-            textView1.setGravity(Gravity.CENTER);
-            textView1.setText(turns.get(j).getPoints(0)+"");
-            textView1.setFreezesText(true);
-            textView1.setTextSize(18);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                textView1.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.dosis_bold));
-            }
-            constraintLayout.addView(textView1);
-
-            ImageView imageView = new ImageView(getActivity());
-            if(turns.get(j).isInside()){
-                imageView.setId(View.generateViewId());
-                imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                        100,
-                        100
-                ));
-                imageView.setAdjustViewBounds(true);
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                if(turns.get(j).getPoints(0) == 0)
-                    imageView.setImageResource(R.drawable.inside_arrow_left);
-                else
-                    imageView.setImageResource(R.drawable.inside_arrow_right);
-
-                constraintLayout.addView(imageView);
-            }
-
-            textView2.setId(View.generateViewId());
-            textView2.setLayoutParams(new ConstraintLayout.LayoutParams(0,100));
-            textView2.setGravity(Gravity.CENTER);
-            textView2.setText(turns.get(j).getPoints(1)+"");
-            textView2.setFreezesText(true);
-            textView2.setTextSize(18);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                textView2.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.dosis_bold));
-            }
-            constraintLayout.addView(textView2);
-
-            constraintSet.clone(constraintLayout);
-
-            constraintSet.connect(textView1.getId(), ConstraintSet.END, textView2.getId(), ConstraintSet.START);
-            constraintSet.connect(textView1.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
-            constraintSet.connect(textView1.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
-            constraintSet.setHorizontalBias(textView1.getId(), 0.5f);
-
-            if(turns.get(j).isInside()){
-                constraintSet.connect(imageView.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
-                constraintSet.connect(imageView.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END);
-                constraintSet.connect(imageView.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
-                constraintSet.setVerticalBias(imageView.getId(), 0.5f);
-            }
-
-            constraintSet.connect(textView2.getId(), ConstraintSet.START, textView1.getId(), ConstraintSet.END);
-            constraintSet.connect(textView2.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END);
-            constraintSet.connect(textView2.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
-            constraintSet.setHorizontalBias(textView2.getId(), 0.5f);
-
-            constraintSet.applyTo(constraintLayout);
-
+            ConstraintLayout constraintLayout = Config.currentGame().generateTurnCL(getActivity(), j);
             int finalJ = j;
             constraintLayout.setOnTouchListener(new View.OnTouchListener() {
                 float dXe, dXd;
@@ -365,7 +294,7 @@ public class FragmentResults extends Fragment {
                     return true;
                 }
             });
-
+            System.out.println(constraintLayout.toString());
             tvLayout.addView(constraintLayout);
             teamsPoints[0] += turns.get(j).getPoints(0);
             teamsPoints[1] += turns.get(j).getPoints(1);

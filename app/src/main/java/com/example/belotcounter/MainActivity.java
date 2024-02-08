@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         Runnable openGame = new Runnable() {
             @Override
             public void run(){
+                System.out.println("HERE:" + game[0].teamNames.size());
                 Config.addGame(game[0]);
                 Intent i = new Intent(MainActivity.this, Playing.class);
                 startActivity(i);
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
     private void initGamesTabs() {
         LinearLayout llPrevGames = ((LinearLayout) findViewById(R.id.llPrevGames));
         llPrevGames.removeAllViews();
-        System.out.println("Config.games.size(): " + Config.games.size());
         if(Config.games.size() == 0){
             ((ConstraintLayout) findViewById(R.id.clLastGame)).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.tvNoGames1)).setVisibility(View.VISIBLE);
@@ -209,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
             String type = sharedPreferences.getString("gameType"+i, "");
             Game game = null;
             String json = sharedPreferences.getString("game"+i, "");
-            System.out.println(json);
             switch(GameType.valueOf(type)){
                 case BELOT:
                     game = gson.fromJson(json, GameBelot.class);
