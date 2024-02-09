@@ -4,15 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
@@ -24,6 +27,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Game {
     public GameType gameType;
@@ -51,6 +55,7 @@ public abstract class Game {
     abstract Turn extractEntry(View editLayout, Context context);
     abstract ArrayList<LinearLayout> getGraphLayouts(Context context, View view);
     abstract void addToTurnCL(Context context, ConstraintLayout constraintLayout, int id);
+    abstract List<Integer> addToGraph();
 
 
     public ArrayList<String> getTeamNames() {
@@ -84,12 +89,13 @@ public abstract class Game {
 
 
     public void customizeGameBtn(Context context, View view, boolean gradient){
-        if(gradient) view.setBackground(ContextCompat.getDrawable(context, gameType.gradient));
-        else view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
-        view.findViewById(R.id.viewEdge).setBackground(ContextCompat.getDrawable(context, gameType.edge));
+        view.setClipToOutline(true);
+        if(gradient) view.findViewById(R.id.viewBackground).setBackground(ContextCompat.getDrawable(context, gameType.gradient));
+        else view.findViewById(R.id.viewBackground).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
+        view.findViewById(R.id.viewEdge).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
         view.findViewById(R.id.line1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
         view.findViewById(R.id.line2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
-        ((TextView) view.findViewById(R.id.tvVs)).setTextColor(ContextCompat.getColor(context, gameType.colorLight));
+        view.findViewById(R.id.line3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
         ((TextView) view.findViewById(R.id.edgeText)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
         ((TextView) view.findViewById(R.id.edgeText)).setText(context.getResources().getString(gameType.gameName));
         ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
@@ -99,6 +105,13 @@ public abstract class Game {
         ((TextView) view.findViewById(R.id.tvPts1)).setText(getPoints(0)+"");
         ((TextView) view.findViewById(R.id.tvTeam2)).setText(teamNames.get(1));
         ((TextView) view.findViewById(R.id.tvPts2)).setText(getPoints(1)+"");
+        if(gameType.plCount == 2){
+            view.findViewById(R.id.linearLayout3).setVisibility(View.GONE);
+        }
+        else{
+            ((TextView) view.findViewById(R.id.tvTeam3)).setText(teamNames.get(2));
+            ((TextView) view.findViewById(R.id.tvPts3)).setText(getPoints(2)+"");
+        }
     }
 
     public void customizeInGameLandscape(Context context, View view){
@@ -114,11 +127,14 @@ public abstract class Game {
         ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvTeam2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
         ((TextView) view.findViewById(R.id.tvFinal2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
+        ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+        ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         view.findViewById(R.id.addPointsBtn).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
     }
     public void customizeEditEntry(Context context, View view){
         view.findViewById(R.id.viewBehind1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
         view.findViewById(R.id.viewBehind2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
+        view.findViewById(R.id.viewBehind3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
     }
     public void customizeWinScreen(Context context, View view){
         view.findViewById(R.id.btnToMenu).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
@@ -199,26 +215,43 @@ public abstract class Game {
         return constraintLayout;
     }
     void initGraph(Context context, GraphView graphView) {
+        if(turns.size()==0) return;
+        graphView.removeAllSeries();
         graphView.getGridLabelRenderer().setHumanRounding(false);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
-                new DataPoint(0, 151),
-                new DataPoint(turns.size(), 151)/*TODO: remove 151*/
-        });
-        series.setColor(ContextCompat.getColor(context, R.color.myDark));
-        graphView.addSeries(series);
+        LineGraphSeries<DataPoint> series = null;
+        for(int line : addToGraph()) {
+            series = new LineGraphSeries<DataPoint>(new DataPoint[]{
+                    new DataPoint(0, line),
+                    new DataPoint(turns.size(), line)
+            });
+            series.setColor(ContextCompat.getColor(context, R.color.myDark));
+            graphView.addSeries(series);
+        }
         for(int i = 0 ; i < gameType.plCount; i++) {
             DataPoint[] values = new DataPoint[turns.size()+1];
             int s = 0;
             values[0] = new DataPoint(0,0);
             for (int j=0; j<turns.size(); j++) {
                 s+=turns.get(j).getPoints(i);
-                values[j+1] = new DataPoint(j, s);
+                values[j+1] = new DataPoint(j+1, s);
             }
             series = new LineGraphSeries<DataPoint>(values);
-            if(i%2==0)
-                series.setColor(ContextCompat.getColor(context, gameType.colorAccent));
-            else
-                series.setColor(ContextCompat.getColor(context, gameType.colorDark));
+            switch(i) {
+                case 0:
+                    series.setColor(ContextCompat.getColor(context, gameType.colorAccent));
+                    break;
+                case 1:
+                    series.setColor(ContextCompat.getColor(context, gameType.colorDark));
+                    break;
+                default:
+                    Paint paint = new Paint();
+                    paint.setStyle(Paint.Style.STROKE);
+                    paint.setStrokeWidth(6);
+                    paint.setColor(ContextCompat.getColor(context, gameType.colorAccent));
+                    paint.setPathEffect(new DashPathEffect(new float[]{8, 5}, 0));
+                    series.setDrawAsPath(true);
+                    series.setCustomPaint(paint);
+            }
             graphView.addSeries(series);
         }
     }

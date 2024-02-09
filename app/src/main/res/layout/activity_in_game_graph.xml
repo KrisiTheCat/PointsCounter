@@ -101,7 +101,7 @@
                 android:tag="vGraphTeam"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/old_games_background"
+                android:background="@drawable/dashed"
                 android:backgroundTint="@color/blato2"/>
 
             <TextView

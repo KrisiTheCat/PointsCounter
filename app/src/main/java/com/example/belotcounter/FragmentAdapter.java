@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 public class FragmentAdapter extends FragmentPagerAdapter {
     private Context myContext;
+    public FragmentResults fragmentResults;
+    public FragmentGraph fragmentGraph;
+    public FragmentAwards fragmentAwards;
     int totalTabs;
     public FragmentAdapter(Context context, FragmentManager fm, int totalTabs) {
         super(fm);
@@ -16,13 +19,13 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                FragmentResults fragmentResults = new FragmentResults();
+                fragmentResults = new FragmentResults();
                 return fragmentResults;
             case 1:
-                FragmentGraph fragmentGraph = new FragmentGraph();
+                fragmentGraph = new FragmentGraph();
                 return fragmentGraph;
             case 2:
-                FragmentAwards fragmentAwards = new FragmentAwards();
+                fragmentAwards = new FragmentAwards();
                 return fragmentAwards;
             default:
                 return null;

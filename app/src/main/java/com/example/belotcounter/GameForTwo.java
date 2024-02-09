@@ -20,12 +20,14 @@ public abstract class GameForTwo extends Game{
     @Override
     void initNames(Context context, LayoutInflater layoutInflater, Runnable runnable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        final View customLayout = layoutInflater.inflate(R.layout.popup_teams_names_two, null);
+        final View customLayout = layoutInflater.inflate(R.layout.popup_teams_names, null);
         builder.setView(customLayout);
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
+        customLayout.findViewById(R.id.etAddPtsTeam3).setVisibility(View.GONE);
+        customLayout.findViewById(R.id.etTeam3).setVisibility(View.GONE);
+        customLayout.findViewById(R.id.viewBehind3).setVisibility(View.GONE);
         ((TextView) customLayout.findViewById(R.id.etAddPtsTeam1)).setText(String.format("%s 1", context.getResources().getString(gameType.partyName)));
         ((TextView) customLayout.findViewById(R.id.etAddPtsTeam2)).setText(String.format("%s 2", context.getResources().getString(gameType.partyName)));
         Button continueBtn = customLayout.findViewById(R.id.btnDelYes);

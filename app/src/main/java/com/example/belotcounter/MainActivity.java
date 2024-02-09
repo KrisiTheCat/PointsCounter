@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,8 +20,6 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     boolean fabOpen;
@@ -100,6 +97,13 @@ public class MainActivity extends AppCompatActivity {
                 game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
             }
         });
+        findViewById(R.id.startHilqdaFab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game[0] = new GameHilqda();
+                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+            }
+        });
 
     }
 
@@ -152,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     View view = LayoutInflater.from(this).inflate(R.layout.old_game_group2, null);
                     ((TextView) view.findViewById(R.id.tvTeam1)).setText(Config.games.get(i).getTeamNames().get(0));
                     ((TextView) view.findViewById(R.id.tvPts1)).setText(Config.games.get(i).getPoints(0) + "");
-                    ((TextView) view.findViewById(R.id.tvTeam2)).setText(Config.games.get(i).getTeamNames().get(1));
+                    ((TextView) view.findViewById(R.id.tvTeam3)).setText(Config.games.get(i).getTeamNames().get(1));
                     ((TextView) view.findViewById(R.id.tvPts2)).setText(Config.games.get(i).getPoints(1) + "");
                     Config.games.get(i).customizeGameBtn(MainActivity.this, view, false);
                     int finalI = i;
@@ -212,6 +216,9 @@ public class MainActivity extends AppCompatActivity {
             switch(GameType.valueOf(type)){
                 case BELOT:
                     game = gson.fromJson(json, GameBelot.class);
+                    break;
+                case HILQDA:
+                    game = gson.fromJson(json, GameHilqda.class);
                     break;
 
             }

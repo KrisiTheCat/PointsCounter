@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class Config {
     public static ArrayList<Game> games = new ArrayList<>();
-
-    public static final int TEAMS_COUNT = 2;
     public static boolean gamesLoaded = false;
 
     public static void addGame(Game game){

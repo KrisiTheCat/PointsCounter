@@ -37,6 +37,24 @@ public class Playing extends AppCompatActivity {
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
+        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(tab.getText() == getResources().getString(R.string.tab_text_2)){
+                    sectionsPagerAdapter.fragmentGraph.refreshGraph();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         tabs.setupWithViewPager(viewPager);
 
 

@@ -19,6 +19,8 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class GameBelot extends GameForTwo{
 
@@ -89,6 +91,11 @@ public class GameBelot extends GameForTwo{
     }
 
     @Override
+    List<Integer> addToGraph() {
+        return Arrays.asList(0, 151);
+    }
+
+    @Override
     void checkForWinner() {
         int p0 = getPoints(0), p1 = getPoints(1);
         if(p0>=151 && p1>=151){
@@ -103,6 +110,10 @@ public class GameBelot extends GameForTwo{
 
     @Override
     void initEntryPopup(View editLayout, int id) {
+
+        editLayout.findViewById(R.id.etAddPtsTeam3).setVisibility(View.GONE);
+        editLayout.findViewById(R.id.etTeam3).setVisibility(View.GONE);
+        editLayout.findViewById(R.id.viewBehind3).setVisibility(View.GONE);
 
         if(id!=-1 && Config.currentGame().getTurns().get(id).getPoints(0)!=0)
             ((EditText) editLayout.findViewById(R.id.etTeam1)).setText(turns.get(id).getPoints(0)+"");

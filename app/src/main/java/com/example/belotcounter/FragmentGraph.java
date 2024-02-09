@@ -42,13 +42,6 @@ public class FragmentGraph extends Fragment {
         // Required empty public constructor
     }
 
-    public static FragmentGraph newInstance(String param1, String param2) {
-        FragmentGraph fragment = new FragmentGraph();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +51,11 @@ public class FragmentGraph extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ROOT = inflater.inflate(R.layout.activity_in_game_graph, container, false);
-        Config.currentGame().customizeGraph(getActivity(), ROOT);
+        refreshGraph();
         return ROOT;
+    }
+
+    public void refreshGraph(){
+        Config.currentGame().customizeGraph(getActivity(), ROOT);
     }
 }

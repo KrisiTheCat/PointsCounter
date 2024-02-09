@@ -8,14 +8,14 @@
     android:background="@drawable/soft_edges">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/viewBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/gradient_belot"
+        android:background="@color/blato3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvVs" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDelGame"
@@ -36,7 +36,7 @@
         android:id="@+id/viewEdge"
         android:layout_width="30dp"
         android:layout_height="0dp"
-        android:background="@drawable/edge_belot"
+        android:background="@color/belot1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,13 +45,13 @@
         android:id="@+id/edgeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-5dp"
         android:fontFamily="@font/cuprum"
         android:rotation="-90"
         android:text="@string/belot"
         android:textColor="@color/belot3"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/viewEdge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,7 +69,7 @@
         tools:layout_editor_absoluteX="265dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -122,7 +122,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -156,6 +156,46 @@
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPts3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis_bold"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:text="109"
+                android:textColor="@color/white"
+                android:textSize="36sp" />
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="80dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@color/belot1"
+                android:foregroundGravity="center" />
+
+            <TextView
+                android:id="@+id/tvTeam3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/cuprum"
+                android:gravity="center"
+                android:maxWidth="90dp"
+                android:text="Отбор 3"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>

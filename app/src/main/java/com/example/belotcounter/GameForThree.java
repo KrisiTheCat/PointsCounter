@@ -19,7 +19,7 @@ public abstract class GameForThree extends Game{
     @Override
     void initNames(Context context, LayoutInflater layoutInflater, Runnable runnable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        final View customLayout = layoutInflater.inflate(R.layout.popup_teams_names_three, null);
+        final View customLayout = layoutInflater.inflate(R.layout.popup_teams_names, null);
         builder.setView(customLayout);
 
         AlertDialog dialog = builder.create();

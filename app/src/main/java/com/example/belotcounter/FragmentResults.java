@@ -3,29 +3,19 @@ package com.example.belotcounter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,6 +89,10 @@ public class FragmentResults extends Fragment {
 
         tvFinal.add((TextView) ROOT.findViewById(R.id.tvFinal1));
         tvFinal.add((TextView) ROOT.findViewById(R.id.tvFinal2));
+        if(Config.currentGame().gameType.plCount == 3) {
+            tvFinal.add((TextView) ROOT.findViewById(R.id.tvFinal3));
+            tvNames.add((TextView) ROOT.findViewById(R.id.tvTeam3));
+        }
 
         turns = Config.currentGame().getTurns();
         refreshNames();
@@ -131,7 +125,7 @@ public class FragmentResults extends Fragment {
             }
         };
         ROOT.findViewById(R.id.tvTeam1).setOnClickListener(list);
-        ROOT.findViewById(R.id.tvTeam2).setOnClickListener(list);
+        ROOT.findViewById(R.id.tvTeam3).setOnClickListener(list);
 
         if(Config.currentGame().winner != Winner.NONE){
             ROOT.findViewById(R.id.addPointsBtn).setVisibility(View.INVISIBLE);
@@ -143,7 +137,7 @@ public class FragmentResults extends Fragment {
     void namesDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        final View customLayout = getLayoutInflater().inflate(R.layout.popup_teams_names_two, null);
+        final View customLayout = getLayoutInflater().inflate(R.layout.popup_teams_names, null);
         builder.setView(customLayout);
         ((EditText) customLayout.findViewById(R.id.etTeam1)).setText(Config.currentGame().getTeamNames().get(0));
         ((EditText) customLayout.findViewById(R.id.etTeam2)).setText(Config.currentGame().getTeamNames().get(1));
@@ -218,14 +212,14 @@ public class FragmentResults extends Fragment {
     }
 
     void refreshNames() {
-        for(int i = 0; i < Config.TEAMS_COUNT; i++) {
+        for(int i = 0; i < Config.currentGame().gameType.plCount; i++) {
             tvNames.get(i).setText(Config.currentGame().getTeamNames().get(i));
         }
     }
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     void refreshPoints(){
-        teamsPoints = new int[Config.TEAMS_COUNT];
+        teamsPoints = new int[Config.currentGame().gameType.plCount];
         tvLayout.removeAllViews();
         View editRibbon = ROOT.findViewById(R.id.cLEditEntry);
         View deleteRibbon = ROOT.findViewById(R.id.cLDeleteEntry);
@@ -296,10 +290,11 @@ public class FragmentResults extends Fragment {
             });
             System.out.println(constraintLayout.toString());
             tvLayout.addView(constraintLayout);
-            teamsPoints[0] += turns.get(j).getPoints(0);
-            teamsPoints[1] += turns.get(j).getPoints(1);
+            for(int i = 0; i < Config.currentGame().gameType.plCount; i++) {
+                teamsPoints[i] += turns.get(j).getPoints(i);
+            }
         }
-        for(int i = 0; i < Config.TEAMS_COUNT; i++){
+        for(int i = 0; i < Config.currentGame().gameType.plCount; i++){
             tvFinal.get(i).setText(teamsPoints[i]+"");
         }
     }

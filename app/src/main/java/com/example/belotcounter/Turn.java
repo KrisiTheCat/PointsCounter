@@ -13,10 +13,16 @@ public class Turn implements Cloneable{
         inside = false;
     }
 
-    public Turn(ArrayList<Integer> points, boolean kapo, boolean inside) {
+    public Turn(ArrayList<Integer> points, boolean kapo, boolean inside) {  // belot
         this.points = points;
         this.kapo = kapo;
         this.inside = inside;
+    }
+
+    public Turn(ArrayList<Integer> points) { //hilqda
+        this.points = points;
+        this.kapo = false;
+        this.inside = false;
     }
 
     public boolean isKapo() {

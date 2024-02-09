@@ -155,7 +155,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvTeam2"
+        android:id="@+id/tvTeam3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -182,7 +182,7 @@
         android:background="@color/myDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTeam2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTeam3" />
 
     <View
         android:id="@+id/view6"
@@ -248,7 +248,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/tvTeam2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTeam3" />
 
     <ScrollView
         android:layout_width="0dp"
