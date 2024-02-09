@@ -17,6 +17,16 @@ public abstract class GameForThree extends Game{
     }
 
     @Override
+    void fillInGameLandscape(Context context, View view) {
+        ((TextView) view.findViewById(R.id.tvTeam1)).setText(teamNames.get(0));
+        ((TextView) view.findViewById(R.id.tvFinal1)).setText(getPoints(0)+"");
+        ((TextView) view.findViewById(R.id.tvTeam2)).setText(teamNames.get(1));
+        ((TextView) view.findViewById(R.id.tvFinal2)).setText(getPoints(1)+"");
+        ((TextView) view.findViewById(R.id.tvTeam3)).setText(teamNames.get(2));
+        ((TextView) view.findViewById(R.id.tvFinal3)).setText(getPoints(2)+"");
+    }
+
+    @Override
     void initNames(Context context, LayoutInflater layoutInflater, Runnable runnable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         final View customLayout = layoutInflater.inflate(R.layout.popup_teams_names, null);

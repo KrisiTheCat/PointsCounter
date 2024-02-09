@@ -3,6 +3,7 @@ package com.example.belotcounter;
 import android.app.AlertDialog;
 import android.content.Context;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,15 @@ public abstract class GameForTwo extends Game{
 
     GameForTwo(){
 
+    }
+
+    @Override
+    void fillInGameLandscape(Context context, View view) {
+        view.findViewById(R.id.llTeam3).setVisibility(View.GONE);
+        ((TextView) view.findViewById(R.id.tvTeam1)).setText(teamNames.get(0));
+        ((TextView) view.findViewById(R.id.tvFinal1)).setText(getPoints(0)+"");
+        ((TextView) view.findViewById(R.id.tvTeam2)).setText(teamNames.get(1));
+        ((TextView) view.findViewById(R.id.tvFinal2)).setText(getPoints(1)+"");
     }
 
     @Override

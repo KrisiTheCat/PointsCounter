@@ -2,9 +2,11 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Playing">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -54,7 +56,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
             android:id="@+id/tvGameName2"
@@ -70,5 +72,122 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </com.example.belotcounter.NonSwipeableViewPager>
+
+    <LinearLayout
+        android:id="@+id/allLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/llTeam1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/belot1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTeam1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:alpha="0.7"
+                android:fontFamily="@font/cuprum"
+                android:gravity="bottom|center_horizontal"
+                android:text="@string/team1sug"
+                android:textColor="@color/white"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/tvFinal1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="-16dp"
+                android:layout_weight="1.35"
+                android:fontFamily="@font/dosis_bold"
+                android:gravity="center_horizontal|top"
+                android:text="@string/zero"
+                android:textColor="@color/white"
+                android:textSize="110sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llTeam2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/belot2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTeam2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:alpha="0.7"
+                android:fontFamily="@font/cuprum"
+                android:gravity="bottom|center_horizontal"
+                android:text="@string/team1sug"
+                android:textColor="@color/white"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/tvFinal2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="-16dp"
+                android:layout_weight="1.35"
+                android:fontFamily="@font/dosis_bold"
+                android:gravity="center_horizontal|top"
+                android:text="@string/zero"
+                android:textColor="@color/white"
+                android:textSize="110sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llTeam3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/belot1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTeam3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1"
+                android:alpha="0.7"
+                android:fontFamily="@font/cuprum"
+                android:gravity="bottom|center_horizontal"
+                android:text="@string/team1sug"
+                android:textColor="@color/white"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/tvFinal3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="-16dp"
+                android:layout_weight="1.35"
+                android:fontFamily="@font/dosis_bold"
+                android:gravity="center_horizontal|top"
+                android:text="@string/zero"
+                android:textColor="@color/white"
+                android:textSize="110sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

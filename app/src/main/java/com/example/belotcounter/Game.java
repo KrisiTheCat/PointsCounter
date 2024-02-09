@@ -6,7 +6,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
@@ -56,6 +54,7 @@ public abstract class Game {
     abstract ArrayList<LinearLayout> getGraphLayouts(Context context, View view);
     abstract void addToTurnCL(Context context, ConstraintLayout constraintLayout, int id);
     abstract List<Integer> addToGraph();
+    abstract void fillInGameLandscape(Context context, View view);
 
 
     public ArrayList<String> getTeamNames() {
@@ -117,18 +116,29 @@ public abstract class Game {
     public void customizeInGameLandscape(Context context, View view){
         ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(Color.WHITE);
         ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(Color.WHITE);
-        view.findViewById(R.id.viewTeam1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
+        view.findViewById(R.id.llTeam1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvTeam2)).setTextColor(Color.WHITE);
         ((TextView) view.findViewById(R.id.tvFinal2)).setTextColor(Color.WHITE);
-        view.findViewById(R.id.viewTeam2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
+        view.findViewById(R.id.llTeam2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
+        ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(Color.WHITE);
+        ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(Color.WHITE);
+        view.findViewById(R.id.llTeam3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
     }
+
     public void customizeInGamePortrait(Context context, View view){
         ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvTeam2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
         ((TextView) view.findViewById(R.id.tvFinal2)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
-        ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
-        ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+        if(gameType.plCount == 2){
+            view.findViewById(R.id.tvTeam3).setVisibility(View.GONE);
+            view.findViewById(R.id.view9).setVisibility(View.GONE);
+            view.findViewById(R.id.tvFinal3).setVisibility(View.GONE);
+        }
+        else{
+            ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+            ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+        }
         view.findViewById(R.id.addPointsBtn).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
     }
     public void customizeEditEntry(Context context, View view){

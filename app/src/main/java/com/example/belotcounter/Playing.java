@@ -1,6 +1,7 @@
 package com.example.belotcounter;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,7 +30,11 @@ public class Playing extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initPortrait();
+        Config.currentGame().customizeInGameLandscape(Playing.this, findViewById(R.id.allLayout));
+    }
 
+    void initPortrait(){
         binding = ActivityPlayingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -71,5 +76,20 @@ public class Playing extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvGameName)).setText(Playing.this.getResources().getString(Config.currentGame().gameType.gameName));
         findViewById(R.id.tvGameName).setBackground(ContextCompat.getDrawable(Playing.this, Config.currentGame().gameType.upper));
+    }
+    @Override
+    public void onConfigurationChanged(Configuration myConfig) {
+        super.onConfigurationChanged(myConfig);
+        int orient = getResources().getConfiguration().orientation;
+        switch(orient) {
+            case Configuration.ORIENTATION_LANDSCAPE:
+                findViewById(R.id.allLayout).setVisibility(View.VISIBLE);
+                Config.currentGame().fillInGameLandscape(Playing.this, findViewById(R.id.allLayout));
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                findViewById(R.id.allLayout).setVisibility(View.INVISIBLE);
+                break;
+            default:
+        }
     }
 }
