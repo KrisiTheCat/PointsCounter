@@ -81,6 +81,7 @@ public class FragmentResults extends Fragment {
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenHeight = displayMetrics.heightPixels-200;
         screenWidth = displayMetrics.widthPixels;
+        System.out.println("screen width: " + screenWidth);
 
         tvLayout = (LinearLayout) ROOT.findViewById(R.id.llTeam);
 
@@ -189,6 +190,13 @@ public class FragmentResults extends Fragment {
                 }
             }
         });
+        editLayout.findViewById(R.id.btnDel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteEntry(id);
+                editDialog.hide();
+            }
+        });
     }
 
     void deleteEntry(int id){
@@ -221,74 +229,15 @@ public class FragmentResults extends Fragment {
     void refreshPoints(){
         teamsPoints = new int[Config.currentGame().gameType.plCount];
         tvLayout.removeAllViews();
-        View editRibbon = ROOT.findViewById(R.id.cLEditEntry);
-        View deleteRibbon = ROOT.findViewById(R.id.cLDeleteEntry);
         for(int j = 0; j < turns.size(); j++) {
             ConstraintLayout constraintLayout = Config.currentGame().generateTurnCL(getActivity(), j);
             int finalJ = j;
-            constraintLayout.setOnTouchListener(new View.OnTouchListener() {
-                float dXe, dXd;
-                int[] startView = new int[2];
-                int[] startMotion = new int[2];
-                int[] startEdit = new int[2];
-                int[] startDelete = new int[2];
+            constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:;
-                            startMotion[0] = (int) event.getRawX();
-                            startMotion[1] = (int) event.getRawY();
-                            view.getLocationInWindow(startView);
-                            editRibbon.getLocationInWindow(startEdit);
-                            deleteRibbon.getLocationInWindow(startDelete);
-                            dXe = startEdit[0] - event.getRawX();
-                            startView[1] -= 115;
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            if(event.getRawX() > startMotion[0]){
-                                editRibbon.animate()
-                                        .x(event.getRawX() + dXe)
-                                        .y(startView[1]-APP_BAR_HEIGHT)
-                                        .alpha(event.getRawX()/screenWidth)
-                                        .setDuration(0)
-                                        .start();
-                            }
-                            else {
-                                deleteRibbon.animate()
-                                        .x(event.getRawX() + dXd)
-                                        .y(startView[1]-APP_BAR_HEIGHT)
-                                        .alpha(1-event.getRawX()/screenWidth)
-                                        .setDuration(0)
-                                        .start();
-                            }
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            if(event.getRawX() > startMotion[0] && event.getRawX()/screenWidth >= 0.75){
-                                editEntry(finalJ);
-                            }
-                            if(event.getRawX() < startMotion[0] && event.getRawX()/screenWidth <= 0.25){
-                                deleteEntry(finalJ);
-                            }
-                            editRibbon.animate()
-                                    .x(startEdit[0])
-                                    .y(startView[1]-APP_BAR_HEIGHT)
-                                    .alpha(0)
-                                    .setDuration(100)
-                                    .start();
-                            deleteRibbon.animate()
-                                    .x(startDelete[0])
-                                    .y(startView[1]-APP_BAR_HEIGHT)
-                                    .alpha(0)
-                                    .setDuration(100)
-                                    .start();
-                            break;
-                        default:
-                            return false;
-                    }
-                    return true;
+                public void onClick(View v) {
+                    editEntry(finalJ);
                 }
             });
-            System.out.println(constraintLayout.toString());
             tvLayout.addView(constraintLayout);
             for(int i = 0; i < Config.currentGame().gameType.plCount; i++) {
                 teamsPoints[i] += turns.get(j).getPoints(i);

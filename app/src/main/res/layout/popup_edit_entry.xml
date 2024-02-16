@@ -142,6 +142,27 @@
         app:layout_constraintTop_toTopOf="@+id/viewBehind3" />
 
     <Button
+        android:id="@+id/btnDel"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/accent3"
+        android:fontFamily="@font/cuprum"
+        android:text="@string/delete"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelYes"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llBelot"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
+
+    <Button
         android:id="@+id/btnDelYes"
         android:layout_width="0dp"
         android:layout_height="49dp"
@@ -151,15 +172,16 @@
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/myDark"
         android:fontFamily="@font/cuprum"
-        android:text="@string/continueBtn"
+        android:text="@string/add"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDel"
         app:layout_constraintTop_toBottomOf="@+id/llBelot"
+        app:layout_constraintVertical_bias="0.0"
         app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
 
     <LinearLayout

@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Rescounter</string>
     <string name="continueBtn">Continue</string>
+    <string name="add">Add</string>
     <string name="belot">BELOT</string>
     <string name="vs">VS</string>
     <string name="zero">0</string>

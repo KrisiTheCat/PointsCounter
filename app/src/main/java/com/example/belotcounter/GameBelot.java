@@ -130,10 +130,12 @@ public class GameBelot extends GameForTwo{
         if(id!=-1) {
             ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(turns.get(id).isKapo());
             ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(turns.get(id).isInside());
+            editLayout.findViewById(R.id.btnDel).setVisibility(View.VISIBLE);
         }
         else{
             ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(false);
             ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(false);
+            editLayout.findViewById(R.id.btnDel).setVisibility(View.GONE);
         }
     }
 }

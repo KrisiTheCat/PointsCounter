@@ -107,6 +107,13 @@ public class GameHilqda extends GameForThree{
         ((TextView)editLayout.findViewById(R.id.etAddPtsTeam2)).setText(teamNames.get(1));
         ((TextView)editLayout.findViewById(R.id.etAddPtsTeam3)).setText(teamNames.get(2));
 
+        if(id!=-1) {
+            editLayout.findViewById(R.id.btnDel).setVisibility(View.VISIBLE);
+        }
+        else{
+            editLayout.findViewById(R.id.btnDel).setVisibility(View.GONE);
+        }
+
         editLayout.findViewById(R.id.llBelot).setVisibility(View.GONE);
     }
 }
