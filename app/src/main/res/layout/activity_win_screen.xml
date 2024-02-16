@@ -5,22 +5,8 @@
     android:id="@+id/clWinScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/myDark"
     tools:context=".WinScreen">
 
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/sprinkles" />
 
     <ImageButton
         android:id="@+id/backBtn2"
@@ -32,16 +18,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back"
-        app:tint="@color/myLight" />
+        app:tint="@color/myDark" />
 
     <Button
         android:id="@+id/btnToMenu"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/accent1Var"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/myDark"
         android:fontFamily="@font/cuprum"
         android:text="@string/to_menu"
         android:textColor="@color/white"
@@ -53,51 +39,94 @@
         app:layout_constraintVertical_chainStyle="spread"
         app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvWinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="74dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/cuprum"
         android:gravity="center"
+        android:text="@string/team1sug"
+        android:textColor="@color/white"
+        android:textSize="44sp"
+        android:textStyle="bold"
+        android:translationZ="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout7" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnToMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+        <TextView
+            android:id="@+id/analysisHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="-16dp"
+            android:background="@drawable/soft_edges"
+            android:backgroundTint="@color/santace2"
+            android:fontFamily="@font/cuprum"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/analisys4_name"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:translationZ="4dp" />
+
+        <TextView
+            android:id="@+id/analysisBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/santace1"
+            android:fontFamily="@font/cuprum"
+            android:padding="16dp"
+            android:text="@string/analisys4_full"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView5"
+        <View
+            android:id="@+id/view"
             android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            app:srcCompat="@drawable/win" />
+            android:layout_height="200dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/winscreen_ribbon" />
 
         <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/cuprum"
-            android:text="@string/game_over"
-            android:textColor="@color/myLight"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/cuprum"
-            android:text="@string/winner_is"
-            android:textColor="@color/myLight"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/tvWinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/cuprum"
-            android:text="@string/team1sug"
-            android:textColor="@color/accent2"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:text="@string/took_trophy"
+            android:textSize="30sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

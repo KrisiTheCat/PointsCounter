@@ -147,25 +147,8 @@ public abstract class Game {
         view.findViewById(R.id.viewBehind3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
     }
     public void customizeWinScreen(Context context, View view){
-        view.findViewById(R.id.btnToMenu).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
-        switch(winner){
-            case TEAM_1:
-                ((TextView) view.findViewById(R.id.tvWinner)).setText(teamNames.get(0));
-                ((TextView) view.findViewById(R.id.tvWinner)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
-                break;
-            case TEAM_2:
-                ((TextView) view.findViewById(R.id.tvWinner)).setText(teamNames.get(1));
-                ((TextView) view.findViewById(R.id.tvWinner)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
-                break;
-            case TEAM_3:
-                ((TextView) view.findViewById(R.id.tvWinner)).setText(teamNames.get(2));
-                ((TextView) view.findViewById(R.id.tvWinner)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
-                break;
-            default:
-                /**TODO
-                 * - tie
-                 */
-        }
+        view.findViewById(R.id.analysisHead).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
+        view.findViewById(R.id.analysisBody).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
     }
     public void customizeGraph(Context context, View view){
         int c = 0;

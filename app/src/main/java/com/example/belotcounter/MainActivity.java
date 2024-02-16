@@ -5,14 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,13 +28,22 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     boolean fabOpen;
+
+    String currLocale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        loadPreferences();
 
+        System.out.println("LOCALE: " + currLocale);
+        setLanguage(currLocale);
+        setContentView(R.layout.activity_main);
+        if(currLocale.equals("en")) ((ImageButton) findViewById(R.id.btnLanguage)).setImageResource(R.drawable.en);
+        else ((ImageButton) findViewById(R.id.btnLanguage)).setImageResource(R.drawable.bg);
         fabOpen = false;
 
         if(!Config.gamesLoaded) loadGames();
@@ -102,6 +118,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 game[0] = new GameHilqda();
                 game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+            }
+        });
+
+        findViewById(R.id.btnLanguage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("language change");
+                if(currLocale.equals("bg"))
+                    currLocale = "en";
+                else
+                    currLocale = "bg";
+                savePreferences();
+                restartApp();
+                System.out.println(currLocale);
             }
         });
 
@@ -240,5 +270,51 @@ public class MainActivity extends AppCompatActivity {
         }
         myEdit.apply();
     }
+
+
+    private void loadPreferences(){
+        SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("MySharedPref3",MODE_PRIVATE);
+        currLocale = sharedPreferences.getString("locale", "en");
+    }
+
+    private void savePreferences(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref3",MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        myEdit.putString("locale", currLocale);
+        myEdit.apply();
+        myEdit.commit();
+    }
+
+    public void setLanguage(String languageCode) {
+        Resources resources = this.getResources();
+        Configuration configuration = resources.getConfiguration();
+        System.out.println("lang code:" + languageCode);
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+    }
+    public void restartApp() {
+        PackageManager pm = getPackageManager();
+        Intent intent = pm.getLaunchIntentForPackage(getPackageName());
+        finishAffinity();
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+    }
+    public Context createConfiguration(Context context, String lan) {
+        System.out.println(lan);
+        Locale locale = new Locale(lan);
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(locale);
+        return context.createConfigurationContext(configuration);
+    }
+
+    /*@Override
+    protected void attachBaseContext(Context newBase) {
+        System.out.println("rawr");
+        loadPreferences();
+        System.out.println(currLocale);
+        super.attachBaseContext(createConfiguration(newBase, currLocale));
+    }*/
 }
 
