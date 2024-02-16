@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/dosis_bold"
-        android:text="@string/vs"
+        android:text="VS"
         android:textColor="@color/belot1"
         android:textSize="50sp"
         android:visibility="gone"

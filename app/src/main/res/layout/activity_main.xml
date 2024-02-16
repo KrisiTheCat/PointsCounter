@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dosis_bold"
-            android:text="@string/vs"
+            android:text="VS"
             android:textColor="@color/belot1"
             android:textSize="50sp"
             android:visibility="gone"
@@ -301,12 +301,33 @@
         app:elevation="2dp"
         app:fabCustomSize="40dp"
         app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/startBelotFab"
-        app:layout_constraintEnd_toEndOf="@+id/startBelotFab"
+        app:layout_constraintBottom_toTopOf="@+id/startBlatoFab"
+        app:layout_constraintEnd_toEndOf="@+id/startBlatoFab"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/startBelotFab"
+        app:layout_constraintStart_toStartOf="@+id/startBlatoFab"
         app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
         app:tint="@color/santace1"
+        app:useCompatPadding="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/startBlatoFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/continueBtn"
+        android:foregroundGravity="center"
+        android:src="@drawable/belot"
+        android:visibility="invisible"
+        app:backgroundTint="@color/myDark"
+        app:elevation="2dp"
+        app:fabCustomSize="40dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/startBelotFab"
+        app:layout_constraintEnd_toEndOf="@+id/startBelotFab"
+        app:layout_constraintStart_toStartOf="@+id/startBelotFab"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:tint="@color/blato1"
         app:useCompatPadding="false" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -406,6 +427,27 @@
         app:layout_constraintBottom_toBottomOf="@+id/startSantaceFab"
         app:layout_constraintEnd_toEndOf="@+id/startSantaceFab"
         app:layout_constraintTop_toTopOf="@+id/startSantaceFab"
+        app:layout_constraintVertical_bias="0.413" />
+
+
+    <TextView
+        android:id="@+id/tvBlatoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/soft_edges"
+        android:backgroundTint="@color/blato1"
+        android:fontFamily="@font/cuprum"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="8dp"
+        android:text="@string/blatoBtn"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/startBlatoFab"
+        app:layout_constraintEnd_toEndOf="@+id/startBlatoFab"
+        app:layout_constraintTop_toTopOf="@+id/startBlatoFab"
         app:layout_constraintVertical_bias="0.413" />
 
     <TextView

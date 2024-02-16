@@ -1,5 +1,6 @@
 package com.example.belotcounter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 
@@ -7,6 +8,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -62,5 +65,14 @@ public abstract class GameForTwo extends Game{
         ans.add((LinearLayout) view.findViewById(R.id.llGraphTeam1));
         ans.add((LinearLayout) view.findViewById(R.id.llGraphTeam2));
         return ans;
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void initEntryPopup(View editLayout, int id) {
+        super.initEntryPopup(editLayout,id);
+        editLayout.findViewById(R.id.etAddPtsTeam3).setVisibility(View.GONE);
+        editLayout.findViewById(R.id.etTeam3).setVisibility(View.GONE);
+        editLayout.findViewById(R.id.viewBehind3).setVisibility(View.GONE);
     }
 }

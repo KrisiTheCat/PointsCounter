@@ -29,7 +29,6 @@
     <string name="last_game">Последна игра:</string>
     <string name="last_games">По-стари игри:</string>
     <string name="no_games">Няма предишни игри.</string>
-    <string name="vs" translatable="false">vs</string>
 
     /*Имена на отбори*/
     <string name="teamsTitles">Имена на отбори</string>
@@ -45,7 +44,6 @@
 
     /*Въвеждане на точки*/
     <string name="addPointsTitle">Въвеждане на точки</string>
-    <string name="zero" translatable="false">0</string>
     <string name="gameWas">Играта беше </string>
     <string name="insiding">вътре</string>
     <string name="kapo">капо</string>
@@ -100,4 +98,7 @@
     <string name="tab_text_2">Графика</string>
     <string name="tab_text_3">По-по-най</string>
     <string name="add">Добави</string>
+    <string name="blato">БЛАТО</string>
+    <string name="blatoBtn">Блато</string>
+    <string name="toast_sum_not_0">Сумата от всички точки трябва да е 0</string>
 </resources>

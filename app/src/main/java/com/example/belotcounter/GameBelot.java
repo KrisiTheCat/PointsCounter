@@ -109,33 +109,15 @@ public class GameBelot extends GameForTwo{
     }
 
     @Override
-    void initEntryPopup(View editLayout, int id) {
-
-        editLayout.findViewById(R.id.etAddPtsTeam3).setVisibility(View.GONE);
-        editLayout.findViewById(R.id.etTeam3).setVisibility(View.GONE);
-        editLayout.findViewById(R.id.viewBehind3).setVisibility(View.GONE);
-
-        if(id!=-1 && Config.currentGame().getTurns().get(id).getPoints(0)!=0)
-            ((EditText) editLayout.findViewById(R.id.etTeam1)).setText(turns.get(id).getPoints(0)+"");
-        else
-            ((EditText) editLayout.findViewById(R.id.etTeam1)).setText("");
-
-        if(id!=-1 && Config.currentGame().getTurns().get(id).getPoints(1)!=0)
-            ((EditText) editLayout.findViewById(R.id.etTeam2)).setText(turns.get(id).getPoints(1)+"");
-        else
-            ((EditText) editLayout.findViewById(R.id.etTeam2)).setText("");
-
-        ((TextView)editLayout.findViewById(R.id.etAddPtsTeam1)).setText(teamNames.get(0));
-        ((TextView)editLayout.findViewById(R.id.etAddPtsTeam2)).setText(teamNames.get(1));
+    public void initEntryPopup(View editLayout, int id) {
+        super.initEntryPopup(editLayout,id);
         if(id!=-1) {
             ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(turns.get(id).isKapo());
             ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(turns.get(id).isInside());
-            editLayout.findViewById(R.id.btnDel).setVisibility(View.VISIBLE);
         }
         else{
             ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(false);
             ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(false);
-            editLayout.findViewById(R.id.btnDel).setVisibility(View.GONE);
         }
     }
 }

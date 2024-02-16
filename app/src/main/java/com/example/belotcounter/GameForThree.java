@@ -1,10 +1,12 @@
 package com.example.belotcounter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -62,5 +64,16 @@ public abstract class GameForThree extends Game{
         ans.add((LinearLayout) view.findViewById(R.id.llGraphTeam2));
         ans.add((LinearLayout) view.findViewById(R.id.llGraphTeam3));
         return ans;
+    }
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void initEntryPopup(View editLayout, int id) {
+        super.initEntryPopup(editLayout,id);
+        if (id != -1 && Config.currentGame().getTurns().get(id).getPoints(1) != 0)
+            ((EditText) editLayout.findViewById(R.id.etTeam3)).setText(turns.get(id).getPoints(2) + "");
+        else
+            ((EditText) editLayout.findViewById(R.id.etTeam3)).setText("");
+
+        ((TextView) editLayout.findViewById(R.id.etAddPtsTeam3)).setText(teamNames.get(2));
     }
 }

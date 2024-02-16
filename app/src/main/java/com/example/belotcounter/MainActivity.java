@@ -62,13 +62,19 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                            findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-
-                            handler2.postDelayed(new Runnable() {
+                            findViewById(R.id.startBlatoFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                            findViewById(R.id.tvBlatoBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                            handler.postDelayed(new Runnable() {
                                 public void run() {
-                                    findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                                    findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                    findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                    findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+
+                                    handler2.postDelayed(new Runnable() {
+                                        public void run() {
+                                            findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                            findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                        }
+                                    }, 200);
                                 }
                             }, 200);
                         }
@@ -80,13 +86,19 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                            findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-
-                            handler2.postDelayed(new Runnable() {
+                            findViewById(R.id.startBlatoFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                            findViewById(R.id.tvBlatoBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                            handler.postDelayed(new Runnable() {
                                 public void run() {
-                                    findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                                    findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                    findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                    findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+
+                                    handler2.postDelayed(new Runnable() {
+                                        public void run() {
+                                            findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                            findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                        }
+                                    }, 200);
                                 }
                             }, 200);
                         }
@@ -117,6 +129,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 game[0] = new GameHilqda();
+                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+            }
+        });
+        findViewById(R.id.startBlatoFab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game[0] = new GameBlato();
                 game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
             }
         });
@@ -246,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
             switch(GameType.valueOf(type)){
                 case BELOT:
                     game = gson.fromJson(json, GameBelot.class);
+                    break;
+                case BLATO:
+                    game = gson.fromJson(json, GameBlato.class);
                     break;
                 case HILQDA:
                     game = gson.fromJson(json, GameHilqda.class);

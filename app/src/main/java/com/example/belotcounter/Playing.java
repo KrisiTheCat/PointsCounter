@@ -1,6 +1,7 @@
 package com.example.belotcounter;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -75,7 +76,7 @@ public class Playing extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, Config.currentGame().gameType.colorLight));
 
         ((TextView) findViewById(R.id.tvGameName)).setText(Playing.this.getResources().getString(Config.currentGame().gameType.gameName));
-        findViewById(R.id.tvGameName).setBackground(ContextCompat.getDrawable(Playing.this, Config.currentGame().gameType.upper));
+        findViewById(R.id.tvGameName).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, Config.currentGame().gameType.colorLight)));
     }
     @Override
     public void onConfigurationChanged(Configuration myConfig) {

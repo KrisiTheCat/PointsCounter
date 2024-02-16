@@ -3,10 +3,11 @@
     <string name="app_name">Rescounter</string>
     <string name="continueBtn">Continue</string>
     <string name="add">Add</string>
+    <string name="zero" translatable="false">0</string>
     <string name="belot">BELOT</string>
-    <string name="vs">VS</string>
-    <string name="zero">0</string>
     <string name="belotBtn">Belot</string>
+    <string name="blato">SWAMP</string>
+    <string name="blatoBtn">Swamp</string>
     <string name="santace">SANTACE</string>
     <string name="santaceBtn">Santace</string>
     <string name="hilqda">THOUSAND</string>
@@ -17,6 +18,7 @@
     <string name="toast_game_deleted">The game was deleted</string>
     <string name="toast_all_zero">Please add points</string>
     <string name="toast_invalid_inside">When there is a \"INSIDE\" one of the teams should have 0 points</string>
+    <string name="toast_sum_not_0">The sum of all points in one turn should be 0</string>
     <string name="last_game">Last game:</string>
     <string name="last_games">Previous games:</string>
     <string name="no_games">No previous games</string>

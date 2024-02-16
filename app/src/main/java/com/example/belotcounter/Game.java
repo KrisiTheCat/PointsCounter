@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,7 +50,6 @@ public abstract class Game {
 
     abstract void initNames(Context context, LayoutInflater layoutInflater, Runnable runnable);
     abstract void checkForWinner();
-    abstract void initEntryPopup(View editLayout, int id);
     abstract Turn extractEntry(View editLayout, Context context);
     abstract ArrayList<LinearLayout> getGraphLayouts(Context context, View view);
     abstract void addToTurnCL(Context context, ConstraintLayout constraintLayout, int id);
@@ -208,7 +208,6 @@ public abstract class Game {
         return constraintLayout;
     }
     void initGraph(Context context, GraphView graphView) {
-        if(turns.size()==0) return;
         graphView.removeAllSeries();
         graphView.getGridLabelRenderer().setHumanRounding(false);
         LineGraphSeries<DataPoint> series = null;
@@ -220,6 +219,7 @@ public abstract class Game {
             series.setColor(ContextCompat.getColor(context, R.color.myDark));
             graphView.addSeries(series);
         }
+        if(turns.size()==0) return;
         for(int i = 0 ; i < gameType.plCount; i++) {
             DataPoint[] values = new DataPoint[turns.size()+1];
             int s = 0;
@@ -246,6 +246,31 @@ public abstract class Game {
                     series.setCustomPaint(paint);
             }
             graphView.addSeries(series);
+        }
+    }
+
+
+    public void initEntryPopup(View editLayout, int id){
+        if(id!=-1 && Config.currentGame().getTurns().get(id).getPoints(0)!=0)
+            ((EditText) editLayout.findViewById(R.id.etTeam1)).setText(turns.get(id).getPoints(0)+"");
+        else
+            ((EditText) editLayout.findViewById(R.id.etTeam1)).setText("");
+
+        if(id!=-1 && Config.currentGame().getTurns().get(id).getPoints(1)!=0)
+            ((EditText) editLayout.findViewById(R.id.etTeam2)).setText(turns.get(id).getPoints(1)+"");
+        else
+            ((EditText) editLayout.findViewById(R.id.etTeam2)).setText("");
+
+        ((TextView)editLayout.findViewById(R.id.etAddPtsTeam1)).setText(teamNames.get(0));
+        ((TextView)editLayout.findViewById(R.id.etAddPtsTeam2)).setText(teamNames.get(1));
+
+        editLayout.findViewById(R.id.llBelot).setVisibility(View.GONE);
+
+        if(id!=-1) {
+            editLayout.findViewById(R.id.btnDel).setVisibility(View.VISIBLE);
+        }
+        else{
+            editLayout.findViewById(R.id.btnDel).setVisibility(View.GONE);
         }
     }
 }

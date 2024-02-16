@@ -22,14 +22,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentResults#newInstance} factory method to
- * create an instance of getActivity() fragment.
- */
 public class FragmentResults extends Fragment {
 
-    private final int APP_BAR_HEIGHT = 310; /**TODO**/
     View ROOT = null;
 
     int[] teamsPoints = null;
