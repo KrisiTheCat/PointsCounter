@@ -40,13 +40,6 @@ public abstract class Game {
         turns = new ArrayList<>();
         winner = Winner.NONE;
     }
-    Game(String n1, String n2){
-        teamNames = new ArrayList<>();
-        turns = new ArrayList<>();
-        teamNames.add(n1);
-        teamNames.add(n2);
-        winner = Winner.NONE;
-    }
 
     abstract void initNames(Context context, LayoutInflater layoutInflater, Runnable runnable);
     abstract void checkForWinner();
@@ -106,6 +99,8 @@ public abstract class Game {
         ((TextView) view.findViewById(R.id.tvPts2)).setText(getPoints(1)+"");
         if(gameType.plCount == 2){
             view.findViewById(R.id.linearLayout3).setVisibility(View.GONE);
+            view.findViewById(R.id.tvTeam3).setVisibility(View.GONE);
+            view.findViewById(R.id.tvPts3).setVisibility(View.GONE);
         }
         else{
             ((TextView) view.findViewById(R.id.tvTeam3)).setText(teamNames.get(2));
@@ -122,7 +117,7 @@ public abstract class Game {
         view.findViewById(R.id.llTeam2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
         ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(Color.WHITE);
         ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(Color.WHITE);
-        view.findViewById(R.id.llTeam3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
+        view.findViewById(R.id.llTeam3).setBackgroundColor(ContextCompat.getColor(context, R.color.myDark));
     }
 
     public void customizeInGamePortrait(Context context, View view){
@@ -136,15 +131,15 @@ public abstract class Game {
             view.findViewById(R.id.tvFinal3).setVisibility(View.GONE);
         }
         else{
-            ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
-            ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
+            ((TextView) view.findViewById(R.id.tvTeam3)).setTextColor(ContextCompat.getColor(context, R.color.myDark));
+            ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(ContextCompat.getColor(context, R.color.myDark));
         }
         view.findViewById(R.id.addPointsBtn).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
     }
     public void customizeEditEntry(Context context, View view){
         view.findViewById(R.id.viewBehind1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
         view.findViewById(R.id.viewBehind2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorDark));
-        view.findViewById(R.id.viewBehind3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorAccent));
+        view.findViewById(R.id.viewBehind3).setBackgroundColor(ContextCompat.getColor(context, R.color.myDark));
     }
     public void customizeWinScreen(Context context, View view){
         view.findViewById(R.id.analysisHead).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
@@ -155,10 +150,11 @@ public abstract class Game {
         ArrayList<LinearLayout> llTeams = getGraphLayouts(context, view);
         for(int i = 0; i < gameType.plCount; i++){
             ((TextView) llTeams.get(i).findViewWithTag("tvGraphTeam")).setText(teamNames.get(i));
-            if(i%2==0)
-                c = ContextCompat.getColor(context, gameType.colorAccent);
-            else
-                c = ContextCompat.getColor(context, gameType.colorDark);
+            switch(i%3) {
+                case 0: c = ContextCompat.getColor(context, gameType.colorAccent); break;
+                case 1: c = ContextCompat.getColor(context, gameType.colorDark); break;
+                case 2: c = ContextCompat.getColor(context, R.color.myDark); break;
+            }
             llTeams.get(i).findViewWithTag("vGraphTeam").setBackgroundTintList(ColorStateList.valueOf(c));
         }
         initGraph(context, view.findViewById(R.id.idGraphView));
@@ -221,15 +217,15 @@ public abstract class Game {
         }
         if(turns.size()==0) return;
         for(int i = 0 ; i < gameType.plCount; i++) {
-            DataPoint[] values = new DataPoint[turns.size()+1];
+            DataPoint[] values = new DataPoint[turns.size() + 1];
             int s = 0;
-            values[0] = new DataPoint(0,0);
-            for (int j=0; j<turns.size(); j++) {
-                s+=turns.get(j).getPoints(i);
-                values[j+1] = new DataPoint(j+1, s);
+            values[0] = new DataPoint(0, 0);
+            for (int j = 0; j < turns.size(); j++) {
+                s += turns.get(j).getPoints(i);
+                values[j + 1] = new DataPoint(j + 1, s);
             }
             series = new LineGraphSeries<DataPoint>(values);
-            switch(i) {
+            switch (i) {
                 case 0:
                     series.setColor(ContextCompat.getColor(context, gameType.colorAccent));
                     break;
@@ -239,14 +235,17 @@ public abstract class Game {
                 default:
                     Paint paint = new Paint();
                     paint.setStyle(Paint.Style.STROKE);
-                    paint.setStrokeWidth(6);
-                    paint.setColor(ContextCompat.getColor(context, gameType.colorAccent));
+                    paint.setStrokeWidth(12);
+                    paint.setColor(ContextCompat.getColor(context, R.color.myDark));
                     paint.setPathEffect(new DashPathEffect(new float[]{8, 5}, 0));
                     series.setDrawAsPath(true);
                     series.setCustomPaint(paint);
             }
+            series.setThickness(12);
             graphView.addSeries(series);
         }
+        graphView.getViewport().setScrollable(true);
+        graphView.getGridLabelRenderer().setNumHorizontalLabels(turns.size()+1);
     }
 
 

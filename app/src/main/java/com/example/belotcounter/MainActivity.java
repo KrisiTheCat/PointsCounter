@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         Runnable openGame = new Runnable() {
             @Override
             public void run(){
-                System.out.println("HERE:" + game[0].teamNames.size());
                 Config.addGame(game[0]);
                 Intent i = new Intent(MainActivity.this, Playing.class);
                 startActivity(i);

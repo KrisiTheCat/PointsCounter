@@ -111,6 +111,7 @@ public class GameBelot extends GameForTwo{
     @Override
     public void initEntryPopup(View editLayout, int id) {
         super.initEntryPopup(editLayout,id);
+        editLayout.findViewById(R.id.llBelot).setVisibility(View.VISIBLE);
         if(id!=-1) {
             ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(turns.get(id).isKapo());
             ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(turns.get(id).isInside());

@@ -1,6 +1,7 @@
 package com.example.belotcounter;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.belotcounter.databinding.ActivityPlayingBinding;
+import com.google.gson.Gson;
 
 public class Playing extends AppCompatActivity {
 
@@ -92,5 +94,19 @@ public class Playing extends AppCompatActivity {
                 break;
             default:
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveGames();
+    }
+    private void saveGames(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref3",MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(Config.games.get(0));
+        myEdit.putString("game0", json);
+        myEdit.apply();
     }
 }

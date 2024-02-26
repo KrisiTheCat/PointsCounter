@@ -3,6 +3,7 @@ package com.example.belotcounter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class FragmentResults extends Fragment {
 
@@ -71,11 +73,6 @@ public class FragmentResults extends Fragment {
         else{
             Config.currentGame().customizeInGamePortrait(getActivity(), ROOT.findViewById(R.id.inGameLayout));
         }
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        screenHeight = displayMetrics.heightPixels-200;
-        screenWidth = displayMetrics.widthPixels;
-        System.out.println("screen width: " + screenWidth);
 
         tvLayout = (LinearLayout) ROOT.findViewById(R.id.llTeam);
 
@@ -120,6 +117,7 @@ public class FragmentResults extends Fragment {
             }
         };
         ROOT.findViewById(R.id.tvTeam1).setOnClickListener(list);
+        ROOT.findViewById(R.id.tvTeam2).setOnClickListener(list);
         ROOT.findViewById(R.id.tvTeam3).setOnClickListener(list);
 
         if(Config.currentGame().winner != Winner.NONE){
@@ -130,29 +128,14 @@ public class FragmentResults extends Fragment {
     }
 
     void namesDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        final View customLayout = getLayoutInflater().inflate(R.layout.popup_teams_names, null);
-        builder.setView(customLayout);
-        ((EditText) customLayout.findViewById(R.id.etTeam1)).setText(Config.currentGame().getTeamNames().get(0));
-        ((EditText) customLayout.findViewById(R.id.etTeam2)).setText(Config.currentGame().getTeamNames().get(1));
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        Button continueBtn = (Button) customLayout.findViewById(R.id.btnDelYes);
-        continueBtn.setOnClickListener(new View.OnClickListener() {
+        Runnable runnable = new Runnable() {
             @Override
-            public void onClick(View view) {
-                ArrayList<String> names = new ArrayList<>();
-                names.add(((TextView) customLayout.findViewById(R.id.etTeam1)).getText().toString());
-                names.add(((TextView) customLayout.findViewById(R.id.etTeam2)).getText().toString());
-                Config.currentGame().setTeamNames(names);
+            public void run(){
                 refreshNames();
-                Toast.makeText(getActivity(),getResources().getText(R.string.toast_names_changed), Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
             }
-        });
+        };
+        Config.currentGame().initNames(getContext(), getLayoutInflater(), runnable);
         Config.currentGame().customizeInGamePortrait(getActivity(), ROOT.findViewById(R.id.inGameLayout));
     }
 
@@ -202,6 +185,18 @@ public class FragmentResults extends Fragment {
                 Config.currentGame().deleteTurn(id);
                 refreshPoints();
                 deleteDialog.hide();
+                Winner oldWin = Config.currentGame().winner;
+                Config.currentGame().checkForWinner();
+                if(Config.currentGame().winner != Winner.NONE){
+                    Intent i = new Intent(getActivity(), WinScreen.class);
+                    startActivity(i);
+                    ROOT.findViewById(R.id.addPointsBtn).setVisibility(View.INVISIBLE);
+                    ROOT.findViewById(R.id.tvFinished).setVisibility(View.VISIBLE);
+                }
+                if(oldWin != Winner.NONE && Config.currentGame().winner == Winner.NONE){
+                    ROOT.findViewById(R.id.addPointsBtn).setVisibility(View.VISIBLE);
+                    ROOT.findViewById(R.id.tvFinished).setVisibility(View.GONE);
+                }
             }
         });
 
@@ -242,19 +237,4 @@ public class FragmentResults extends Fragment {
         }
     }
 
-    /*TODO
-
-       @Override
-    protected void onStop() {
-        super.onStop();
-        saveGames();
-    }
-    private void saveGames(){
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
-        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(Config.games.get(0));
-        myEdit.putString("game0", json);
-        myEdit.apply();
-    }*/
 }

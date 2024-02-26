@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,10 +82,12 @@ public class FragmentAwards extends Fragment {
                 clAward.setVisibility(View.GONE);
         else {
             ((TextView) clAward.findViewWithTag("teamName")).setText(Config.currentGame().getTeamNames().get(team));
-            if (team == 1)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), Config.currentGame().gameType.colorDark)));
+            if (team == 0)
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorAccent)));
+            else if (team == 1)
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorDark)));
             else
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), Config.currentGame().gameType.colorAccent)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.myDark)));
             ((TextView) clAward.findViewWithTag("additionalInfo")).setText(res + " " +
                     getContext().getString(R.string.points) + " " +
                     getContext().getString(R.string.on) + " " +
@@ -107,10 +110,12 @@ public class FragmentAwards extends Fragment {
             clAward.setVisibility(View.GONE);
         else {
             ((TextView) clAward.findViewWithTag("teamName")).setText(Config.currentGame().getTeamNames().get(team));
-            if (team == 1)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), Config.currentGame().gameType.colorDark)));
+            if (team == 0)
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorAccent)));
+            else if (team == 1)
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorDark)));
             else
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), Config.currentGame().gameType.colorAccent)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.myDark)));
             ((TextView) clAward.findViewWithTag("additionalInfo")).setText(res + " " +
                     getContext().getString(R.string.points) + " " +
                     getContext().getString(R.string.on) + " " +
@@ -144,10 +149,12 @@ public class FragmentAwards extends Fragment {
             clAward.setVisibility(View.GONE);
         else {
             ((TextView) clAward.findViewWithTag("teamName")).setText(Config.currentGame().getTeamNames().get(team));
-            if (team == 1)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), Config.currentGame().gameType.colorDark)));
+            if (team == 0)
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorAccent)));
+            else if (team == 1)
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorDark)));
             else
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), Config.currentGame().gameType.colorAccent)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.myDark)));
             ((TextView) clAward.findViewWithTag("additionalInfo")).setText(
                     getContext().getString(R.string.from) + " " +
                             (streakFrom + 1) + " " +

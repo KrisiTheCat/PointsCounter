@@ -4,6 +4,7 @@
     <string name="continueBtn">Continue</string>
     <string name="add">Add</string>
     <string name="zero" translatable="false">0</string>
+    <string name="nooneDid">No one</string>
     <string name="belot">BELOT</string>
     <string name="belotBtn">Belot</string>
     <string name="blato">SWAMP</string>
@@ -22,16 +23,14 @@
     <string name="last_game">Last game:</string>
     <string name="last_games">Previous games:</string>
     <string name="no_games">No previous games</string>
-    <string name="teamsTitles">Teams names</string>
+    <string name="teamsTitles">Set names</string>
     <string name="team1">Team 1:</string>
     <string name="team2">Team 2:</string>
     <string name="team3">Team 3:</string>
     <string name="team1sug">Strawberries with legs</string>
     <string name="team2sug">Pineapples with hands</string>
     <string name="team3sug">Apples with eyes</string>
-    <string name="team1hint">Name of Team 1</string>
-    <string name="team2hint">Name of Team 2</string>
-    <string name="team3hint">Name of Team 3</string>
+    <string name="nameHint">Name of </string>
     <string name="addPointsTitle">Adding points</string>
     <string name="gameWas">The game was</string>
     <string name="insiding">inside</string>
@@ -75,4 +74,5 @@
     <string name="analisys3_part2">" unleashed a series of mind-bending moves in the final moments and triumphed in a stunning victory!"</string>
     <string name="language">Language</string>
     <string name="pro">Paid version</string>
+    <string name="toast_empty_name">Please enter names</string>
 </resources>

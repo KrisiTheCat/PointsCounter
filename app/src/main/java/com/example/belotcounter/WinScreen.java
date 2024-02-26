@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class WinScreen extends AppCompatActivity {
 
     @Override
@@ -34,6 +36,18 @@ public class WinScreen extends AppCompatActivity {
                 finish();
             }
         });
+
+        TextView tvWinner = (TextView) findViewById(R.id.tvWinner);
+        switch(Config.currentGame().winner){
+            case TEAM_1:
+                tvWinner.setText(Config.currentGame().getTeamNames().get(0)); break;
+            case TEAM_2:
+                tvWinner.setText(Config.currentGame().getTeamNames().get(1)); break;
+            case TEAM_3:
+                tvWinner.setText(Config.currentGame().getTeamNames().get(2)); break;
+            default:
+                tvWinner.setText(getResources().getString(R.string.nooneDid)); break;
+        }
 
         addWinningMessage(detectWinningStyle());
     }
@@ -78,22 +92,22 @@ public class WinScreen extends AppCompatActivity {
             case 1:
                 ((TextView) findViewById(R.id.analysisHead)).setText(getResources().getString(R.string.analisys1_name));
                 ((TextView) findViewById(R.id.analysisBody)).setText(
-                        getResources().getString(R.string.analisys1_part1) +
-                        Config.currentGame().teamNames.get(winner) +
+                        getResources().getString(R.string.analisys1_part1) + " " +
+                        Config.currentGame().teamNames.get(winner) + " " +
                         getResources().getString(R.string.analisys1_part2));
                 break;
             case 2:
                 ((TextView) findViewById(R.id.analysisHead)).setText(getResources().getString(R.string.analisys2_name));
                 ((TextView) findViewById(R.id.analysisBody)).setText(
-                        getResources().getString(R.string.analisys2_part1) +
-                        Config.currentGame().teamNames.get(winner) +
+                        getResources().getString(R.string.analisys2_part1) + " " +
+                        Config.currentGame().teamNames.get(winner) + " " +
                         getResources().getString(R.string.analisys2_part2));
                 break;
             default:
                 ((TextView) findViewById(R.id.analysisHead)).setText(getResources().getString(R.string.analisys3_name));
                 ((TextView) findViewById(R.id.analysisBody)).setText(
-                        getResources().getString(R.string.analisys3_part1) +
-                        Config.currentGame().teamNames.get(winner) +
+                        getResources().getString(R.string.analisys3_part1) + " " +
+                        Config.currentGame().teamNames.get(winner) + " " +
                         getResources().getString(R.string.analisys3_part2));
                 break;
         }

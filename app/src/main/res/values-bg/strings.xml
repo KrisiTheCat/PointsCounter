@@ -31,16 +31,14 @@
     <string name="no_games">Няма предишни игри.</string>
 
     /*Имена на отбори*/
-    <string name="teamsTitles">Имена на отбори</string>
+    <string name="teamsTitles">Определяне на имена</string>
     <string name="team1">Отбор 1:</string>
     <string name="team2">Отбор 2:</string>
     <string name="team3">Отбор 3:</string>
     <string name="team1sug">Ягодки с крачета</string>
     <string name="team2sug">Анансчета с ръчички</string>
     <string name="team3sug">Ябълки с очички</string>
-    <string name="team1hint">Име на отбор 1</string>
-    <string name="team2hint">Име на отбор 2</string>
-    <string name="team3hint">Име на отбор 3</string>
+    <string name="nameHint">Име на </string>
 
     /*Въвеждане на точки*/
     <string name="addPointsTitle">Въвеждане на точки</string>
@@ -101,4 +99,6 @@
     <string name="blato">БЛАТО</string>
     <string name="blatoBtn">Блато</string>
     <string name="toast_sum_not_0">Сумата от всички точки трябва да е 0</string>
+    <string name="nooneDid">Никой не</string>
+    <string name="toast_empty_name">Моля въведете имена</string>
 </resources>
