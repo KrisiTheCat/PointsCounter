@@ -44,6 +44,10 @@ public class GameBlato extends GameForThree{
             Toast.makeText(context, context.getResources().getText(R.string.toast_sum_not_0), Toast.LENGTH_SHORT).show();
             return null;
         }
+        else if(newVal.get(0) == 0 && newVal.get(1) == 0 && newVal.get(2) == 0){
+            Toast.makeText(context, context.getResources().getText(R.string.toast_all_zero), Toast.LENGTH_SHORT).show();
+            return null;
+        }
         else{
             return new Turn(newVal,kapo,inside);
         }

@@ -38,8 +38,13 @@ public class GameSantace extends GameForTwo{
             newVal.add(Integer.parseInt(temp));
             if(Integer.parseInt(temp) != 0) allZero = false;
         }
-
-        return new Turn(newVal);
+        if(allZero){
+            Toast.makeText(context, context.getResources().getText(R.string.toast_all_zero), Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        else {
+            return new Turn(newVal);
+        }
     }
 
     @Override
@@ -60,7 +65,9 @@ public class GameSantace extends GameForTwo{
             else if(p0<p1) winner = Winner.TEAM_2;
             else winner = Winner.NONE;
         }
-        winner = Winner.NONE;
+        else if(p0>=11) winner = Winner.TEAM_1;
+        else if(p1>=11) winner = Winner.TEAM_2;
+        else winner = Winner.NONE;
     }
 }
 

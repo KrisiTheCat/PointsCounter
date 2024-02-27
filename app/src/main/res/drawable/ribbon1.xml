@@ -10,7 +10,7 @@
             <shape android:shape="rectangle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <solid android:color="@color/accent1" />
+                <solid android:color="@color/belot1" />
             </shape>
         </rotate>
     </item>

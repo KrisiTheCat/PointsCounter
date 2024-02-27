@@ -82,17 +82,34 @@ public abstract class Game {
 
     public void customizeGameBtn(Context context, View view, boolean gradient){
         view.setClipToOutline(true);
-        if(gradient) view.findViewById(R.id.viewBackground).setBackground(ContextCompat.getDrawable(context, gameType.gradient));
-        else view.findViewById(R.id.viewBackground).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
-        view.findViewById(R.id.viewEdge).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
-        view.findViewById(R.id.line1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
-        view.findViewById(R.id.line2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
-        view.findViewById(R.id.line3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
-        ((TextView) view.findViewById(R.id.edgeText)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
-        ((TextView) view.findViewById(R.id.edgeText)).setText(context.getResources().getString(gameType.gameName));
-        ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
-        ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorDark)));
+        if(winner != Winner.NONE) {
+            if (gradient)
+                view.findViewById(R.id.viewBackground).setBackground(ContextCompat.getDrawable(context, R.drawable.gradient_finished));
+            else
+                view.findViewById(R.id.viewBackground).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.finished2)));
+            view.findViewById(R.id.viewEdge).setBackgroundColor(ContextCompat.getColor(context, R.color.finished1));
+            view.findViewById(R.id.line1).setBackgroundColor(ContextCompat.getColor(context, R.color.finished1));
+            view.findViewById(R.id.line2).setBackgroundColor(ContextCompat.getColor(context, R.color.finished1));
+            view.findViewById(R.id.line3).setBackgroundColor(ContextCompat.getColor(context, R.color.finished1));
+            ((TextView) view.findViewById(R.id.edgeText)).setTextColor(ContextCompat.getColor(context, R.color.finished3));
+            ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.finished1)));
+            ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.finished3)));
+        }
+        else {
+            if (gradient)
+                view.findViewById(R.id.viewBackground).setBackground(ContextCompat.getDrawable(context, gameType.gradient));
+            else
+                view.findViewById(R.id.viewBackground).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorAccent)));
+            view.findViewById(R.id.viewEdge).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
+            view.findViewById(R.id.line1).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
+            view.findViewById(R.id.line2).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
+            view.findViewById(R.id.line3).setBackgroundColor(ContextCompat.getColor(context, gameType.colorLight));
+            ((TextView) view.findViewById(R.id.edgeText)).setTextColor(ContextCompat.getColor(context, gameType.colorDark));
+            ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorLight)));
+            ((FloatingActionButton) view.findViewById(R.id.fabDelGame)).setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, gameType.colorDark)));
+        }
 
+        ((TextView) view.findViewById(R.id.edgeText)).setText(context.getResources().getString(gameType.gameName));
         ((TextView) view.findViewById(R.id.tvTeam1)).setText(teamNames.get(0));
         ((TextView) view.findViewById(R.id.tvPts1)).setText(getPoints(0)+"");
         ((TextView) view.findViewById(R.id.tvTeam2)).setText(teamNames.get(1));
@@ -105,9 +122,11 @@ public abstract class Game {
         else{
             ((TextView) view.findViewById(R.id.tvTeam3)).setText(teamNames.get(2));
             ((TextView) view.findViewById(R.id.tvPts3)).setText(getPoints(2)+"");
+            view.findViewById(R.id.linearLayout3).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.tvTeam3).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.tvPts3).setVisibility(View.VISIBLE);
         }
     }
-
     public void customizeInGameLandscape(Context context, View view){
         ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(Color.WHITE);
         ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(Color.WHITE);
@@ -119,7 +138,6 @@ public abstract class Game {
         ((TextView) view.findViewById(R.id.tvFinal3)).setTextColor(Color.WHITE);
         view.findViewById(R.id.llTeam3).setBackgroundColor(ContextCompat.getColor(context, R.color.myDark));
     }
-
     public void customizeInGamePortrait(Context context, View view){
         ((TextView) view.findViewById(R.id.tvTeam1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
         ((TextView) view.findViewById(R.id.tvFinal1)).setTextColor(ContextCompat.getColor(context, gameType.colorAccent));
@@ -177,7 +195,11 @@ public abstract class Game {
             textView.setGravity(Gravity.CENTER);
             textView.setText(turns.get(id).getPoints(t)+"");
             textView.setFreezesText(true);
-            textView.setTextColor(ContextCompat.getColor(context, R.color.myDark));
+            if(turns.get(id).getPoints(t)<0)
+                textView.setTextColor(ContextCompat.getColor(context, R.color.myRed));
+            else
+                textView.setTextColor(ContextCompat.getColor(context, R.color.myDark));
+
             textView.setTextSize(18);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 textView.setTypeface(ResourcesCompat.getFont(context, R.font.dosis_bold));

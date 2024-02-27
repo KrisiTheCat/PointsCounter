@@ -148,7 +148,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/accent3"
+        android:backgroundTint="@color/myRed"
         android:fontFamily="@font/cuprum"
         android:text="@string/delete"
         android:textColor="@color/white"

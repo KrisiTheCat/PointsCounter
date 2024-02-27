@@ -3,6 +3,7 @@ package com.example.belotcounter;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -18,6 +19,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -39,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loadPreferences();
 
-        System.out.println("LOCALE: " + currLocale);
         setLanguage(currLocale);
         setContentView(R.layout.activity_main);
         if(currLocale.equals("en")) ((ImageButton) findViewById(R.id.btnLanguage)).setImageResource(R.drawable.en);
@@ -53,56 +55,11 @@ public class MainActivity extends AppCompatActivity {
         startGameFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Handler handler = new Handler();
-                Handler handler2 = new Handler();
-
                 if(fabOpen) {
-                    startGameFab.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.rotate_from_45));
-                    findViewById(R.id.startBelotFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                    findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            findViewById(R.id.startBlatoFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                            findViewById(R.id.tvBlatoBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                            handler.postDelayed(new Runnable() {
-                                public void run() {
-                                    findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                                    findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-
-                                    handler2.postDelayed(new Runnable() {
-                                        public void run() {
-                                            findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                                            findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
-                                        }
-                                    }, 200);
-                                }
-                            }, 200);
-                        }
-                    }, 200);
+                    closeButton();
                 }
                 else {
-                    startGameFab.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.rotate_to_45));
-                    findViewById(R.id.startBelotFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                    findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            findViewById(R.id.startBlatoFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                            findViewById(R.id.tvBlatoBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                            handler.postDelayed(new Runnable() {
-                                public void run() {
-                                    findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                                    findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-
-                                    handler2.postDelayed(new Runnable() {
-                                        public void run() {
-                                            findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                                            findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
-                                        }
-                                    }, 200);
-                                }
-                            }, 200);
-                        }
-                    }, 200);
+                    openButton();
                 }
                 fabOpen = !fabOpen;
             }
@@ -115,48 +72,55 @@ public class MainActivity extends AppCompatActivity {
                 Config.addGame(game[0]);
                 Intent i = new Intent(MainActivity.this, Playing.class);
                 startActivity(i);
+                if(fabOpen)closeButton();
             }
         };
         findViewById(R.id.startBelotFab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game[0] = new GameBelot();
-                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                if(fabOpen) {
+                    game[0] = new GameBelot();
+                    game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                }
             }
         });
         findViewById(R.id.startHilqdaFab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game[0] = new GameHilqda();
-                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                if(fabOpen) {
+                    game[0] = new GameHilqda();
+                    game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                }
             }
         });
         findViewById(R.id.startBlatoFab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game[0] = new GameBlato();
-                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                if(fabOpen) {
+                    game[0] = new GameBlato();
+                    game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                }
             }
         });
         findViewById(R.id.startSantaceFab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game[0] = new GameSantace();
-                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                if(fabOpen) {
+                    game[0] = new GameSantace();
+                    game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+                }
             }
         });
 
         findViewById(R.id.btnLanguage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("language change");
                 if(currLocale.equals("bg"))
                     currLocale = "en";
                 else
                     currLocale = "bg";
                 savePreferences();
                 restartApp();
-                System.out.println(currLocale);
             }
         });
 
@@ -181,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent i = new Intent(MainActivity.this, Playing.class);
                     startActivity(i);
+                    if(fabOpen)closeButton();
                 }
             });
             lastGameLayout.findViewById(R.id.fabDelGame).setOnClickListener(new View.OnClickListener() {
@@ -240,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                             Config.openGame(finalI);
                             Intent i = new Intent(MainActivity.this, Playing.class);
                             startActivity(i);
+                            if(fabOpen) closeButton();
                         }
                     });
                     llPrevGames.addView(view);
@@ -319,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
     public void setLanguage(String languageCode) {
         Resources resources = this.getResources();
         Configuration configuration = resources.getConfiguration();
-        System.out.println("lang code:" + languageCode);
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
         configuration.setLocale(locale);
@@ -338,6 +303,61 @@ public class MainActivity extends AppCompatActivity {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(locale);
         return context.createConfigurationContext(configuration);
+    }
+
+    private void closeButton(){
+        Handler handler = new Handler();
+        Handler handler2 = new Handler();
+        FloatingActionButton startGameFab = (FloatingActionButton) findViewById(R.id.startGameFab);
+        startGameFab.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.rotate_from_45));
+        findViewById(R.id.startBelotFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+        findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                findViewById(R.id.startBlatoFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                findViewById(R.id.tvBlatoBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                        findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+
+                        handler2.postDelayed(new Runnable() {
+                            public void run() {
+                                findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                                findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.to_bottom_anim));
+                            }
+                        }, 200);
+                    }
+                }, 200);
+            }
+        }, 200);
+    }
+    private void openButton(){
+        Handler handler = new Handler();
+        Handler handler2 = new Handler();
+        FloatingActionButton startGameFab = (FloatingActionButton) findViewById(R.id.startGameFab);
+        startGameFab.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.rotate_to_45));
+        findViewById(R.id.startBelotFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+        findViewById(R.id.tvBelotBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                findViewById(R.id.startBlatoFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                findViewById(R.id.tvBlatoBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        findViewById(R.id.startSantaceFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                        findViewById(R.id.tvSantaceBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+
+                        handler2.postDelayed(new Runnable() {
+                            public void run() {
+                                findViewById(R.id.startHilqdaFab).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                                findViewById(R.id.tvHilqdaBtn).startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.from_bottom_anim));
+                            }
+                        }, 200);
+                    }
+                }, 200);
+            }
+        }, 200);
     }
 
     /*@Override

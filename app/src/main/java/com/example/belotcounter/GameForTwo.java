@@ -57,18 +57,18 @@ public abstract class GameForTwo extends Game{
             public void onClick(View view) {
                 String name1 = ((TextView) customLayout.findViewById(R.id.etTeam1)).getText().toString();
                 String name2 = ((TextView) customLayout.findViewById(R.id.etTeam2)).getText().toString();
-                System.out.println("length: " + name1.length());
                 if(name1.length() == 0 || name2.length() == 0){
-                System.out.println("length: " + name2.length());
                     Toast.makeText(context, context.getResources().getText(R.string.toast_empty_name), Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    if(teamNames.size() != 0){
+                        Toast.makeText(context,context.getResources().getText(R.string.toast_names_changed), Toast.LENGTH_SHORT).show();
+                    }
                     teamNames.clear();
                     teamNames.add(name1);
                     teamNames.add(name2);
                     winner = Winner.NONE;
                     dialog.dismiss();
-                    Toast.makeText(context,context.getResources().getText(R.string.toast_names_changed), Toast.LENGTH_SHORT).show();
                     runnable.run();
 
                 }

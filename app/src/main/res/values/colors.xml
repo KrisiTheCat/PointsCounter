@@ -4,11 +4,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="myLight">#FFEECE</color>
-    <color name="accent1">#FCBF49</color>
-    <color name="accent1Var">#FFAE33</color>
-    <color name="accent2">#F77F00</color>
-    <color name="accent3">#D62828</color>
+    <color name="myRed">#D62828</color>
     <color name="myDark">#003049</color>
+
+    /*FINISHED*/
+    <color name="finished1">#CDCDCD</color>
+    <color name="finished2">#8C8C8C</color>
+    <color name="finished3">#606060</color>
 
     /*BELOT*/
     <color name="belot1">#FBD07D</color>
@@ -22,11 +24,11 @@
 
     /*HILQDA*/
     <color name="hilqda1">#B7D3F7</color>
-    <color name="hilqda2">#5D9CEC</color>
+    <color name="hilqda2">#6BA3EB</color>
     <color name="hilqda3">#3575CA</color>
 
     /*BLATO*/
-    <color name="blato1">#AFDC7D</color>
-    <color name="blato2">#8CC051</color>
-    <color name="blato3">#649E22</color>
+    <color name="blato1">#A7D575</color>
+    <color name="blato2">#90CA4F</color>
+    <color name="blato3">#5B9A12</color>
 </resources>

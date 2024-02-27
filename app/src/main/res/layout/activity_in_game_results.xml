@@ -73,7 +73,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="@string/team1sug"
-            android:textColor="@color/accent1"
+            android:textColor="@color/belot1"
             android:textSize="24sp" />
 
         <TextView
@@ -85,7 +85,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="@string/team2sug"
-            android:textColor="@color/accent2"
+            android:textColor="@color/belot2"
             android:textSize="24sp" />
 
         <TextView
@@ -97,7 +97,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="@string/team3sug"
-            android:textColor="@color/accent2"
+            android:textColor="@color/belot2"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -130,7 +130,7 @@
         android:id="@+id/viewTeam1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/accent1"
+        android:background="@color/belot1"
         android:translationZ="-1dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -143,7 +143,7 @@
         android:id="@+id/viewTeam2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/accent2"
+        android:background="@color/belot2"
         android:translationZ="-1dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -200,38 +200,38 @@
 
         <TextView
             android:id="@+id/tvFinal1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/dosis_bold"
             android:freezesText="true"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/accent1"
+            android:textColor="@color/belot1"
             android:textSize="44sp" />
 
         <TextView
             android:id="@+id/tvFinal2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/dosis_bold"
             android:freezesText="true"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/accent2"
+            android:textColor="@color/belot2"
             android:textSize="44sp" />
 
         <TextView
             android:id="@+id/tvFinal3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/dosis_bold"
             android:freezesText="true"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/accent2"
+            android:textColor="@color/belot2"
             android:textSize="44sp" />
     </LinearLayout>
 

@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:maxImageSize="20dp"
         app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-        app:tint="@color/accent2" />
+        app:tint="@color/belot2" />
 
     <View
         android:id="@+id/viewEdge"
