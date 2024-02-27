@@ -205,9 +205,9 @@ public abstract class Game {
     }
     void initGraph(Context context, GraphView graphView) {
         graphView.removeAllSeries();
-        graphView.getGridLabelRenderer().setHumanRounding(false);
         LineGraphSeries<DataPoint> series = null;
-        for(int line : addToGraph()) {
+        List<Integer> setNumbers = addToGraph();
+        for(int line : setNumbers) {
             series = new LineGraphSeries<DataPoint>(new DataPoint[]{
                     new DataPoint(0, line),
                     new DataPoint(turns.size(), line)
@@ -216,6 +216,7 @@ public abstract class Game {
             graphView.addSeries(series);
         }
         if(turns.size()==0) return;
+        double max_y = setNumbers.get(1);
         for(int i = 0 ; i < gameType.plCount; i++) {
             DataPoint[] values = new DataPoint[turns.size() + 1];
             int s = 0;
@@ -223,6 +224,7 @@ public abstract class Game {
             for (int j = 0; j < turns.size(); j++) {
                 s += turns.get(j).getPoints(i);
                 values[j + 1] = new DataPoint(j + 1, s);
+                max_y = Math.max(s, max_y);
             }
             series = new LineGraphSeries<DataPoint>(values);
             switch (i) {
@@ -244,8 +246,13 @@ public abstract class Game {
             series.setThickness(12);
             graphView.addSeries(series);
         }
-        graphView.getViewport().setScrollable(true);
         graphView.getGridLabelRenderer().setNumHorizontalLabels(turns.size()+1);
+        double max_x = turns.size();
+        graphView.getViewport().setXAxisBoundsManual(true);
+        graphView.getViewport().setMaxX(max_x);
+        graphView.getViewport().setYAxisBoundsManual(true);
+        graphView.getViewport().setMaxY(max_y);
+
     }
 
 

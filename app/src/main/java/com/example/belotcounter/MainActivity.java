@@ -138,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
                 game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
             }
         });
+        findViewById(R.id.startSantaceFab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game[0] = new GameSantace();
+                game[0].initNames(MainActivity.this, getLayoutInflater(), openGame);
+            }
+        });
 
         findViewById(R.id.btnLanguage).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case HILQDA:
                     game = gson.fromJson(json, GameHilqda.class);
+                    break;
+                case SANTACE:
+                    game = gson.fromJson(json, GameSantace.class);
                     break;
 
             }

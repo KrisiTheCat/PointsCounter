@@ -494,7 +494,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:fontFamily="@font/dosis_bold"
+            android:fontFamily="@font/cuprum"
             android:gravity="center"
             android:text="@string/app_name"
             android:textSize="36sp"
