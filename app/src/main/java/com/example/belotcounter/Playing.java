@@ -33,6 +33,7 @@ public class Playing extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MainActivity.setLanguage(MainActivity.currLocale, this);
         initPortrait();
         Config.currentGame().customizeInGameLandscape(Playing.this, findViewById(R.id.allLayout));
     }

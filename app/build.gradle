@@ -5,13 +5,13 @@ plugins {
 android {
     namespace 'com.example.belotcounter'
     compileSdk 34
-
     defaultConfig {
         applicationId "com.example.belotcounter"
         minSdk 25
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        resConfigs "en", "bg"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

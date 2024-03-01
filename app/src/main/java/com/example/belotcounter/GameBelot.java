@@ -113,12 +113,21 @@ public class GameBelot extends GameForTwo{
         super.initEntryPopup(editLayout,id);
         editLayout.findViewById(R.id.llBelot).setVisibility(View.VISIBLE);
         if(id!=-1) {
-            ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(turns.get(id).isKapo());
-            ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(turns.get(id).isInside());
+            setSelectedCheckBox(((CheckBox) editLayout.findViewById(R.id.cbKapo)), turns.get(id).isKapo());
+            setSelectedCheckBox(((CheckBox) editLayout.findViewById(R.id.cbInside)), turns.get(id).isInside());
         }
         else{
-            ((CheckBox) editLayout.findViewById(R.id.cbKapo)).setSelected(false);
-            ((CheckBox) editLayout.findViewById(R.id.cbInside)).setSelected(false);
+            setSelectedCheckBox(((CheckBox) editLayout.findViewById(R.id.cbKapo)), false);
+            setSelectedCheckBox(((CheckBox) editLayout.findViewById(R.id.cbInside)), false);
+        }
+    }
+
+    void setSelectedCheckBox(CheckBox checkBox, boolean state){
+        if(state && !checkBox.isChecked()){
+            checkBox.toggle();
+        }
+        if(!state && checkBox.isChecked()){
+            checkBox.toggle();
         }
     }
 }

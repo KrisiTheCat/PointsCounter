@@ -36,13 +36,13 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     boolean fabOpen;
 
-    String currLocale;
+    public static String currLocale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadPreferences();
 
-        setLanguage(currLocale);
+        setLanguage(currLocale, this);
         setContentView(R.layout.activity_main);
         if(currLocale.equals("en")) ((ImageButton) findViewById(R.id.btnLanguage)).setImageResource(R.drawable.en);
         else ((ImageButton) findViewById(R.id.btnLanguage)).setImageResource(R.drawable.bg);
@@ -282,8 +282,8 @@ public class MainActivity extends AppCompatActivity {
         myEdit.commit();
     }
 
-    public void setLanguage(String languageCode) {
-        Resources resources = this.getResources();
+    public static  void setLanguage(String languageCode, Context context) {
+        Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
@@ -297,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(0, 0);
     }
+
     public Context createConfiguration(Context context, String lan) {
         System.out.println(lan);
         Locale locale = new Locale(lan);
