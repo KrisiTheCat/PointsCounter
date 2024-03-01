@@ -3,10 +3,10 @@ plugins {
 }
 
 android {
-    namespace 'krisi.belotcounter'
+    namespace 'com.krisi.belotcounter'
     compileSdk 34
     defaultConfig {
-        applicationId "krisi.belotcounter"
+        applicationId "com.krisi.belotcounter"
         minSdk 25
         targetSdk 33
         versionCode 1
