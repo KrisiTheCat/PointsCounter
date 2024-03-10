@@ -1,6 +1,7 @@
 package com.krisi.belotcounter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -70,6 +71,8 @@ public class Playing extends AppCompatActivity {
         ((android.widget.ImageButton) findViewById(R.id.backBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(Playing.this, MainActivity.class);
+                startActivity(i);
                 finish();
             }
         });

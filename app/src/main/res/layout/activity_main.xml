@@ -317,7 +317,7 @@
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/continueBtn"
         android:foregroundGravity="center"
-        android:src="@drawable/belot"
+        android:src="@drawable/blato"
         android:visibility="invisible"
         app:backgroundTint="@color/myDark"
         app:elevation="2dp"

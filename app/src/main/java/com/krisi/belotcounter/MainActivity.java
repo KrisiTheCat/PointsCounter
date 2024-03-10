@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 Config.addGame(game[0]);
                 Intent i = new Intent(MainActivity.this, Playing.class);
                 startActivity(i);
+                finish();
                 if(fabOpen)closeButton();
             }
         };
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
     private void initGamesTabs() {
         LinearLayout llPrevGames = ((LinearLayout) findViewById(R.id.llPrevGames));
         llPrevGames.removeAllViews();
+        System.out.println(Config.games.size()+" games");
         if(Config.games.size() == 0){
             ((ConstraintLayout) findViewById(R.id.clLastGame)).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.tvNoGames1)).setVisibility(View.VISIBLE);
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent i = new Intent(MainActivity.this, Playing.class);
                     startActivity(i);
+                    finish();
                     if(fabOpen)closeButton();
                 }
             });
@@ -212,18 +215,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        initGamesTabs();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        saveGames();
     }
 
     private void loadGames(){
@@ -369,11 +360,15 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("HERE");
-        loadGames();
+    protected void onPostResume() {
+        super.onPostResume();
         initGamesTabs();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveGames();
     }
 }
 
