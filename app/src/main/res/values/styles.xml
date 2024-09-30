@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.BelotCounter.Belot">
+        <item name="colorPrimaryDark">@color/belot1</item>
+        <item name="colorLight">@color/belot1</item>
+        <item name="colorMain">@color/belot2</item>
+        <item name="colorDark">@color/belot3</item>
+        <item name="gameName">@string/belot</item>
+        <item name="partyName">@string/team</item>
+        <item name="gradient">@drawable/gradient_belot</item>
+    </style>
+    <style name="Base.Theme.BelotCounter.Hilqda">
+        <item name="colorPrimaryDark">@color/hilqda1</item>
+        <item name="colorLight">@color/hilqda1</item>
+        <item name="colorMain">@color/hilqda2</item>
+        <item name="colorDark">@color/hilqda3</item>
+        <item name="gameName">@string/hilqda</item>
+        <item name="partyName">@string/player</item>
+        <item name="gradient">@drawable/gradient_hilqda</item>
+    </style>
+    <style name="Base.Theme.BelotCounter.Blato">
+        <item name="colorPrimaryDark">@color/blato1</item>
+        <item name="colorLight">@color/blato1</item>
+        <item name="colorMain">@color/blato2</item>
+        <item name="colorDark">@color/blato3</item>
+        <item name="gameName">@string/blato</item>
+        <item name="partyName">@string/player</item>
+        <item name="gradient">@drawable/gradient_blato</item>
+    </style>
+    <style name="Base.Theme.BelotCounter.Santace">
+        <item name="colorPrimaryDark">@color/santace1</item>
+        <item name="colorLight">@color/santace1</item>
+        <item name="colorMain">@color/santace2</item>
+        <item name="colorDark">@color/santace3</item>
+        <item name="gameName">@string/santace</item>
+        <item name="partyName">@string/player</item>
+        <item name="gradient">@drawable/gradient_santace</item>
+    </style>
+    <style name="Base.Theme.BelotCounter.Finished">
+        <item name="colorLight">@color/finished1</item>
+        <item name="colorMain">@color/finished2</item>
+        <item name="colorDark">@color/finished3</item>
+        <item name="gradient">@drawable/gradient_finished</item>
+    </style>
+</resources>

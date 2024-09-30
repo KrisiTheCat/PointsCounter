@@ -14,11 +14,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
@@ -41,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadPreferences();
+        if(!Config.gamesLoaded) loadGames();
+        if(Config.games.size() == 0)
+            setTheme(GameType.BELOT.theme);
+        else
+            setTheme(Config.games.get(0).gameType.theme);
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(Color.WHITE);
 
         setLanguage(currLocale, this);
         setContentView(R.layout.activity_main);
@@ -48,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         else ((ImageButton) findViewById(R.id.btnLanguage)).setImageResource(R.drawable.bg);
         fabOpen = false;
 
-        if(!Config.gamesLoaded) loadGames();
         initGamesTabs();
 
         FloatingActionButton startGameFab = (FloatingActionButton) findViewById(R.id.startGameFab);
@@ -140,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             /*Last game*/
+            setTheme(Config.games.get(0).gameType.theme);
             View lastGameLayout = findViewById(R.id.clLastGame);
             Config.games.get(0).customizeGameBtn(MainActivity.this, lastGameLayout, true);
             lastGameLayout.setOnClickListener(new View.OnClickListener() {
@@ -176,12 +190,10 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 for(int i = 1; i < Config.games.size(); i++) {
-                    View view = LayoutInflater.from(this).inflate(R.layout.old_game_group2, null);
-                    ((TextView) view.findViewById(R.id.tvTeam1)).setText(Config.games.get(i).getTeamNames().get(0));
-                    ((TextView) view.findViewById(R.id.tvPts1)).setText(Config.games.get(i).getPoints(0) + "");
-                    ((TextView) view.findViewById(R.id.tvTeam3)).setText(Config.games.get(i).getTeamNames().get(1));
-                    ((TextView) view.findViewById(R.id.tvPts2)).setText(Config.games.get(i).getPoints(1) + "");
-                    Config.games.get(i).customizeGameBtn(MainActivity.this, view, false);
+                    ContextThemeWrapper newContext = new ContextThemeWrapper(this, Config.games.get(i).gameType.theme);
+                    System.out.println(Config.games.get(i).gameType.theme);
+                    View view = LayoutInflater.from(newContext).inflate(R.layout.old_game_group2, null);
+                    Config.games.get(i).customizeGameBtn(newContext, view, false);
                     int finalI = i;
                     view.findViewById(R.id.fabDelGame).setOnClickListener(new View.OnClickListener() {
                         @Override

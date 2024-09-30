@@ -10,8 +10,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.BelotCounter.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,11 +34,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/upper"
-                android:backgroundTint="@color/belot1"
+                android:backgroundTint="?colorLight"
                 android:fontFamily="@font/cuprum"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="@string/belot"
+                android:text="?gameName"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/belot1"
+            android:background="?colorLight"
             android:orientation="vertical">
 
             <TextView
@@ -122,7 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/belot2"
+            android:background="?colorMain"
             android:orientation="vertical">
 
             <TextView
@@ -158,7 +157,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/belot1"
+            android:background="@color/myDark"
             android:orientation="vertical">
 
             <TextView
@@ -169,7 +168,6 @@
                 android:layout_marginRight="24dp"
                 android:layout_weight="1"
                 android:alpha="0.7"
-                android:fontFamily="@font/cuprum"
                 android:gravity="bottom|center_horizontal"
                 android:text="@string/team1sug"
                 android:textColor="@color/white"

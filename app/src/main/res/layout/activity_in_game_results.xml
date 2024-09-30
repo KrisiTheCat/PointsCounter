@@ -43,7 +43,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/belot1"
+        android:backgroundTint="?colorLight"
         android:fontFamily="@font/cuprum"
         android:text="@string/addPoints"
         android:textSize="20sp"
@@ -73,7 +73,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="@string/team1sug"
-            android:textColor="@color/belot1"
+            android:textColor="?colorMain"
             android:textSize="24sp" />
 
         <TextView
@@ -85,7 +85,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="@string/team2sug"
-            android:textColor="@color/belot2"
+            android:textColor="?colorDark"
             android:textSize="24sp" />
 
         <TextView
@@ -97,7 +97,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="@string/team3sug"
-            android:textColor="@color/belot2"
+            android:textColor="@color/myDark"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -207,7 +207,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/belot1"
+            android:textColor="?colorMain"
             android:textSize="44sp" />
 
         <TextView
@@ -219,7 +219,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/belot2"
+            android:textColor="?colorDark"
             android:textSize="44sp" />
 
         <TextView
@@ -231,7 +231,7 @@
             android:freezesText="true"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/belot2"
+            android:textColor="@color/myDark"
             android:textSize="44sp" />
     </LinearLayout>
 

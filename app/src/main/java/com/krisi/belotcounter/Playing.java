@@ -33,6 +33,7 @@ public class Playing extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Config.currentGame().gameType.theme);
         super.onCreate(savedInstanceState);
         MainActivity.setLanguage(MainActivity.currLocale, this);
         initPortrait();
@@ -79,10 +80,6 @@ public class Playing extends AppCompatActivity {
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, Config.currentGame().gameType.colorLight));
-
-        ((TextView) findViewById(R.id.tvGameName)).setText(Playing.this.getResources().getString(Config.currentGame().gameType.gameName));
-        findViewById(R.id.tvGameName).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, Config.currentGame().gameType.colorLight)));
     }
     @Override
     public void onConfigurationChanged(Configuration myConfig) {

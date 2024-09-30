@@ -21,7 +21,6 @@
         <activity
             android:name=".WinScreen"
             android:exported="false"
-            android:theme="@style/Theme.BelotCounter"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"

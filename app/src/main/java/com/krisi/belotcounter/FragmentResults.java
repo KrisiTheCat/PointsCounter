@@ -103,7 +103,6 @@ public class FragmentResults extends Fragment {
         editLayout = getLayoutInflater().inflate(R.layout.popup_edit_entry, null);
         builder.setView(editLayout);
         editDialog = builder.create();
-        Config.currentGame().customizeEditEntry(getActivity(), editLayout);
 
         builder = new AlertDialog.Builder(getActivity());
         deleteLayout = getLayoutInflater().inflate(R.layout.popup_delete_entry, null);

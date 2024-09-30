@@ -1,12 +1,18 @@
 package com.krisi.belotcounter;
 
+import static androidx.appcompat.widget.TintTypedArray.obtainStyledAttributes;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -60,8 +67,15 @@ public class FragmentAwards extends Fragment {
 
     @SuppressLint("SetTextI18n")
     void init() {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getContext().getTheme();
+        theme.resolveAttribute(R.attr.colorMain, typedValue, true);
+        @ColorInt int colorM = typedValue.data;
+        theme.resolveAttribute(R.attr.colorDark, typedValue, true);
+        @ColorInt int colorD = typedValue.data;
+
         ArrayList<Turn> turns = Config.currentGame().getTurns();
-        if(turns.size() != 0)
+        if(!turns.isEmpty())
             ROOT.findViewById(R.id.tvNotEnough).setVisibility(View.GONE);
         else {
             ROOT.findViewById(R.id.svAwards).setVisibility(View.GONE);
@@ -83,11 +97,12 @@ public class FragmentAwards extends Fragment {
         else {
             ((TextView) clAward.findViewWithTag("teamName")).setText(Config.currentGame().getTeamNames().get(team));
             if (team == 0)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorAccent)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(colorM));
             else if (team == 1)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorDark)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(colorD));
             else
                 clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.myDark)));
+
             ((TextView) clAward.findViewWithTag("additionalInfo")).setText(res + " " +
                     getContext().getString(R.string.points) + " " +
                     getContext().getString(R.string.on) + " " +
@@ -111,9 +126,9 @@ public class FragmentAwards extends Fragment {
         else {
             ((TextView) clAward.findViewWithTag("teamName")).setText(Config.currentGame().getTeamNames().get(team));
             if (team == 0)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorAccent)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(colorM));
             else if (team == 1)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorDark)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(colorD));
             else
                 clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.myDark)));
             ((TextView) clAward.findViewWithTag("additionalInfo")).setText(res + " " +
@@ -150,9 +165,9 @@ public class FragmentAwards extends Fragment {
         else {
             ((TextView) clAward.findViewWithTag("teamName")).setText(Config.currentGame().getTeamNames().get(team));
             if (team == 0)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorAccent)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(colorM));
             else if (team == 1)
-                clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), Config.currentGame().gameType.colorDark)));
+                clAward.setBackgroundTintList(ColorStateList.valueOf(colorD));
             else
                 clAward.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.myDark)));
             ((TextView) clAward.findViewWithTag("additionalInfo")).setText(

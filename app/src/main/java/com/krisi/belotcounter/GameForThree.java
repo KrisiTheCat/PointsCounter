@@ -38,17 +38,17 @@ public abstract class GameForThree extends Game{
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        ((EditText) customLayout.findViewById(R.id.etTeam1)).setHint(context.getResources().getString(R.string.nameHint) + " " + context.getResources().getString(gameType.partyName) + " 1");
-        ((EditText) customLayout.findViewById(R.id.etTeam2)).setHint(context.getResources().getString(R.string.nameHint) + " " + context.getResources().getString(gameType.partyName) + " 2");
-        ((EditText) customLayout.findViewById(R.id.etTeam3)).setHint(context.getResources().getString(R.string.nameHint) + " " + context.getResources().getString(gameType.partyName) + " 3");
+        ((EditText) customLayout.findViewById(R.id.etTeam1)).setHint(context.getResources().getString(R.string.nameHint) + " " + context.getResources().getString(gameType.party) + " 1");
+        ((EditText) customLayout.findViewById(R.id.etTeam2)).setHint(context.getResources().getString(R.string.nameHint) + " " + context.getResources().getString(gameType.party) + " 2");
+        ((EditText) customLayout.findViewById(R.id.etTeam3)).setHint(context.getResources().getString(R.string.nameHint) + " " + context.getResources().getString(gameType.party) + " 3");
         if(teamNames.size() != 0){
             ((EditText) customLayout.findViewById(R.id.etTeam1)).setText(Config.currentGame().getTeamNames().get(0));
             ((EditText) customLayout.findViewById(R.id.etTeam2)).setText(Config.currentGame().getTeamNames().get(1));
             ((EditText) customLayout.findViewById(R.id.etTeam3)).setText(Config.currentGame().getTeamNames().get(2));
         }
-        ((TextView) customLayout.findViewById(R.id.etAddPtsTeam1)).setText(String.format("%s 1", context.getResources().getString(gameType.partyName)));
-        ((TextView) customLayout.findViewById(R.id.etAddPtsTeam2)).setText(String.format("%s 2", context.getResources().getString(gameType.partyName)));
-        ((TextView) customLayout.findViewById(R.id.etAddPtsTeam3)).setText(String.format("%s 3", context.getResources().getString(gameType.partyName)));
+        ((TextView) customLayout.findViewById(R.id.etAddPtsTeam1)).setText(String.format("%s 1", context.getResources().getString(gameType.party)));
+        ((TextView) customLayout.findViewById(R.id.etAddPtsTeam2)).setText(String.format("%s 2", context.getResources().getString(gameType.party)));
+        ((TextView) customLayout.findViewById(R.id.etAddPtsTeam3)).setText(String.format("%s 3", context.getResources().getString(gameType.party)));
         Button continueBtn = customLayout.findViewById(R.id.btnDelYes);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override

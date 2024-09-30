@@ -17,11 +17,10 @@ public class WinScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Config.currentGame().gameType.theme);
         super.onCreate(savedInstanceState);
         MainActivity.setLanguage(MainActivity.currLocale, this);
         setContentView(R.layout.activity_win_screen);
-
-        Config.currentGame().customizeWinScreen(WinScreen.this, findViewById(R.id.clWinScreen));
 
         findViewById(R.id.backBtn2).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,15 +3,14 @@
     <style name="Base.Theme.BelotCounter" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/cuprum</item>
 
-        <item name="colorPrimary">@color/myDark</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/black</item>
-        <item name="colorOnSecondary">@color/myLight</item>
+<!--        <item name="colorMain">#A700FF</item>-->
     </style>
 
-    <style name="Theme.BelotCounter" parent="Base.Theme.BelotCounter" />
+    <style name="Theme.BelotCounter" parent="Base.Theme.BelotCounter">
+
+    </style>
 
     <style name="Theme.BelotCounter.NoActionBar">
         <item name="windowActionBar">false</item>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="plCount" format="reference|integer"/>
+    <attr name="colorLight" format="reference|color"/>
+    <attr name="colorMain" format="reference|color"/>
+    <attr name="colorDark" format="reference|color"/>
+    <attr name="gameName" format="reference|string"/>
+    <attr name="partyName" format="reference|string"/>
+    <attr name="gradient" format="reference"/>
+</resources>
