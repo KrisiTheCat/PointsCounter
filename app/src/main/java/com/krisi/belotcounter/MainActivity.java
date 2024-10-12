@@ -18,12 +18,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.WindowMetrics;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -31,6 +33,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
@@ -138,6 +144,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        initAds();
+
+    }
+
+    private void initAds(){
+        new Thread(
+                () -> {
+                    MobileAds.initialize(this, initializationStatus -> {});
+                    runOnUiThread(this::loadBanner);
+                })
+                .start();
+    }
+
+    private void loadBanner(){
+        LinearLayout adContainerView = ((LinearLayout) findViewById(R.id.llAds));
+        AdView adView = new AdView(this);
+        adView.setAdUnitId("ca-app-pub-6588289182275206/9461005395");
+        System.out.println("HIII");
+        adView.setAdSize(getAdSize());
+        adContainerView.removeAllViews();
+        adContainerView.addView(adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
+
+    private AdSize getAdSize() {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int adWidthPixels = displayMetrics.widthPixels;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowMetrics windowMetrics = this.getWindowManager().getCurrentWindowMetrics();
+            adWidthPixels = windowMetrics.getBounds().width();
+        }
+
+        float density = displayMetrics.density;
+        int adWidth = (int) (adWidthPixels / density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
